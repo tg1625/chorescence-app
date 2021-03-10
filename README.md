@@ -1,70 +1,30 @@
-# Getting Started with Create React App
+# Chorescence
+Chorescence is a web app that aims to help families or roommates to manage and assign chores while avoiding awkward confrontations. 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Authors
+- Tatyana Graesser
+- Kevin Grajeda
+- Helen Xu
+- Alwyn Zhang
 
-## Available Scripts
+## Requirements
 
-In the project directory, you can run:
+-	User Account Creation 
+The proposed project will allow users to create accounts and add other users to their contacts lists. Information pertaining to the user such as name, tasks/chores, roles, and email address will be associated with their account. 
 
-### `npm start`
+-	Group Creation and moderation for families/roommates
+Users may create and be a part of as many groups as they want. The user who created the group will be the initial group administrator. They will be able to adjust group settings and user permissions, appoint other users as administrators, and relinquish their administrator status. Group members can be given specific roles based on the tasks/chores the members have. The adjustable group settings will include group name, group theme, and group roles. User permissions will include abilities to add or remove users, create tasks/chores, and adjust  the group settings.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Task/Chore Creation
+Either the administrator of the group can create tasks for the other users or other users can create tasks for themselves. The administrator will  have control over the name, date, duration, priority, category, and whom the task is assigned to. The tasks will be able to be easily modified or deleted if needed. They can also be set to be recurring at specific dates and times. The application will also provide users with customizable reminders to ensure that the tasks are completed.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Task Feedback
+Users can notify others in their group that they have completed their task/chore, notify others if they are unable to complete the task/chore, or request changes relating to the task/chore. When users within a group find that a task has been falsely marked as complete or performed inadequately, they may send a notice to the user responsible for the task or to the administrator for review.
 
-### `npm test`
+- Task History
+Users can view past tasks within a group that have been assigned and completed, plus any notices that have been sent for falsely/inadequately completed tasks. Previously assigned tasks can be duplicated and re-assigned.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+Fully detailed system requirements and use cases can be found in SRS.pdf in the documentation folder
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
