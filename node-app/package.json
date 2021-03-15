@@ -1,7 +1,7 @@
 {
-  "name": "chorescence-backend",
+  "name": "chorescence-api",
   "version": "1.0.0",
-  "description": "Backend Node server for the Chorescence app",
+  "description": "Backend Node API for the Chorescence app",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
