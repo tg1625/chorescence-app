@@ -10,22 +10,56 @@ import './styles/App.css';
 import Header from './components/Header';
 import Index from './pages/Index';
 import Login from './pages/Login';
+import GroupDashboard from './pages/GroupDashboard';
+import Dashboard from './pages/Dashboard';
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      loggedIn: false
+    }
+  }
+
+  toggleLogin(){
+    this.setState({ loggedIn: !this.state.loggedIn })
+  }
+
   render() {
+    console.log("Logged in:", this.state.loggedIn);
     return (
       <div className="siteWrapper">
-        <Header />
+        <Header loggedIn={this.state.loggedIn} />
+        <button onClick={() => this.toggleLogin()}>
+          Toggle Login
+        </button>
+      
         {/* Routing for the pages */}
         <Router>
           <Switch>
             {/* Homepage route  */}
             <Route exact path="/">
-              <Index></Index>
+              {
+              this.state.loggedIn ? (<Redirect to="dashboard"/>) : <Index/> 
+              }
+            </Route>
+            {/* Dashboard route */}
+            <Route exact path="/dashboard">
+            {
+              !this.state.loggedIn ? (<Redirect to="/"/>) : <Dashboard/> 
+              }
+            </Route>
+            <Route exact path="/group">
+              {/* {
+              !this.state.loggedIn ? (<Redirect to="/"/>) : <GroupDashboard/> 
+              } */}
+              <GroupDashboard/>
             </Route>
             {/* Login route  */}
             <Route exact path="/login">
-              <Login/>
+              {
+              this.state.loggedIn ? (<Redirect to="dashboard"/>) : <Login/> 
+              }
             </Route>
             {/* Sign Up Path  */}
             <Route exact path="/signup">

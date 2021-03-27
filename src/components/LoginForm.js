@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 
 class LoginForm extends Component {
+  constructor(props){
+    super(props);
+  }
   render() {
     return (
-        <form className="forms" onSubmit={function Login(){console.log('Submit');}}>
+        <form className="forms" onSubmit={() => console.log("Submit login")}>
         <h3>Login</h3>
         <label htmlFor="loginEmail">Email</label>
         <input type="email" name="loginEmail" placeholder="Email"/>
