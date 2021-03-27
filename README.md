@@ -24,6 +24,6 @@ Users can notify others in their group that they have completed their task/chore
 #### Task History
 Users can view past tasks within a group that have been assigned and completed, plus any notices that have been sent for falsely/inadequately completed tasks. Previously assigned tasks can be duplicated and re-assigned.
 
-Fully detailed system requirements and use cases can be found in SRS.pdf in the documentation folder
+Fully detailed system requirements and use cases can be found in [SRS.pdf](documentation/SRS.pdf) in the documentation folder
 
 
