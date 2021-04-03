@@ -13,6 +13,9 @@ import Login from './pages/Login';
 import GroupDashboard from './pages/GroupDashboard';
 import Dashboard from './pages/Dashboard';
 
+import CreateGroup from './pages/CreateGroup';
+import JoinGroup from './pages/JoinGroup';
+
 class App extends Component {
   constructor(props){
     super(props);
@@ -54,7 +57,22 @@ class App extends Component {
               !this.state.loggedIn ? (<Redirect to="/"/>) : <GroupDashboard/> 
               } */}
               <GroupDashboard/>
+              
             </Route>
+            {/* Group Creation route  */}
+            <Route exact path="/creategroup">
+              {/* {
+              !this.state.loggedIn ? (<Redirect to="/"/>) : <GroupDashboard/> 
+              } */}
+              <CreateGroup/>
+            </Route>
+            <Route exact path="/joingroup">
+              {/* {
+              !this.state.loggedIn ? (<Redirect to="/"/>) : <GroupDashboard/> 
+              } */}
+              <JoinGroup/>
+            </Route>
+
             {/* Login route  */}
             <Route exact path="/login">
               {
