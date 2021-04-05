@@ -4,9 +4,7 @@ class Dashboard extends Component {
     constructor(props){
         super(props);
         this.state = {
-            groups: [{"id": "123456", "name": "Testing Group 1"}, 
-                    {"id": "789012", "name": "Testing Group 2"}
-        ]
+            groups: []
         }
     }
     render() {

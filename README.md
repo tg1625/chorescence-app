@@ -26,4 +26,13 @@ Users can view past tasks within a group that have been assigned and completed, 
 
 Fully detailed system requirements and use cases can be found in [SRS.pdf](documentation/SRS.pdf) in the documentation folder
 
+## NPM Targets
+Since this project is built using Node, we will be using npm instead of make
+- npm start: compile and run the project
+    - the equivalent of make prod
+- npm test: compile and run tests
+    - the equivalent of make tests
+- npm test -- --coverage: compile and run tests with coverage
+- npm install: install all the dependencies for the project
+    - the equivalent of make dev_env
 
