@@ -7,6 +7,9 @@ Chorescence is a web app that aims to help families or roommates to manage and a
 - Helen Xu
 - Alwyn Zhang
 
+### Kanban Board
+Here's the link to the [Kanban Board](https://trello.com/b/Kf6zRpQy) for this project
+
 ## Requirements
 
 ####	User Account Creation 
