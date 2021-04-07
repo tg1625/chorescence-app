@@ -33,7 +33,7 @@ class Dashboard extends Component {
     render() {
         console.log("Rendering groups:",this.state.groups);
         const gs = this.state.groups.map(function(g){
-            return <div className="card"><a href={`group/?group=${g.id}`}>{g.name}</a></div>;
+            return <div className="card"><a href={`group/?group=${g.id}&name=${g.name}`}>{g.name}</a></div>;
           });
         return (
         <div className="mainWrapper">

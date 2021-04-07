@@ -4,7 +4,8 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect
+  Redirect,
+  withRouter
 } from "react-router-dom";
 import './styles/App.css';
 import Header from './components/Header';
@@ -56,7 +57,7 @@ class App extends Component {
               {/* {
               !this.state.loggedIn ? (<Redirect to="/"/>) : <GroupDashboard/> 
               } */}
-              <GroupDashboard/>
+              <GroupDashboard location={this.props.location}/>
               
             </Route>
             {/* Group Creation route  */}
