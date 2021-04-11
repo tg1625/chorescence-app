@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Container, ListGroup } from 'react-bootstrap';
 
 class Dashboard extends Component {
     constructor(props){
@@ -9,6 +10,10 @@ class Dashboard extends Component {
         }
     }
     componentDidMount(){
+        this.setGroups();
+    }
+
+    setGroups(){
         axios.get(`https://chorescence-api.herokuapp.com/user/?id=1`) 
         .then(response => {
             let out = [];
@@ -32,16 +37,17 @@ class Dashboard extends Component {
     }
     render() {
         console.log("Rendering groups:",this.state.groups);
-        const gs = this.state.groups.map(function(g){
-            return <div className="card"><a href={`group/?group=${g.id}&name=${g.name}`}>{g.name}</a></div>;
-          });
         return (
-        <div className="mainWrapper">
+        <Container>
             <h1>Groups</h1>
-            {gs}
-            <div className="card"><a href="/joingroup">Join a Group</a></div>
-            <div className="card"><a href="/creategroup">Create a Group</a></div>
-        </div>
+            <ListGroup>
+                {this.state.groups && this.state.groups.map((g,i) => (
+                    <ListGroup.Item key={i}><a href={`group/?group=${g.id}&name=${g.name}`}>{g.name}</a></ListGroup.Item>
+                ))}
+                <ListGroup.Item><a href="/joingroup">Join a Group</a></ListGroup.Item>
+                <ListGroup.Item><a href="/creategroup">Create a Group</a></ListGroup.Item>
+            </ListGroup>
+        </Container>
         );
     }
 }

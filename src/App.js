@@ -7,13 +7,19 @@ import {
   Redirect,
   withRouter
 } from "react-router-dom";
+
+//Styles
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.css';
+
+import Button from 'react-bootstrap/Button';
+
+//Components/Pages
 import Header from './components/Header';
 import Index from './pages/Index';
 import Login from './pages/Login';
 import GroupDashboard from './pages/GroupDashboard';
 import Dashboard from './pages/Dashboard';
-
 import CreateGroup from './pages/CreateGroup';
 import JoinGroup from './pages/JoinGroup';
 
@@ -34,7 +40,7 @@ class App extends Component {
     return (
       <div className="siteWrapper">
         <Header loggedIn={this.state.loggedIn} />
-        <button onClick={() => this.toggleLogin()}>
+        <button className="btn" onClick={() => this.toggleLogin()}>
           Toggle Login
         </button>
       

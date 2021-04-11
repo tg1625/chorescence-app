@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import { withRouter } from 'react-router-dom';
+import Task from '../components/Task';
+import { Container, Row, Col, CardDeck } from 'react-bootstrap';
+// import { CardDeck } from 'react-bootstrap';
 
 
 class GroupDashboard extends Component {
@@ -33,27 +36,19 @@ class GroupDashboard extends Component {
         console.log(error);
     })
   }
-  //function to get all the tasks for a group
-  loadTasks(){
-    return this.state.tasks.map(function(t){
-        return (
-        <div className="task">
-          <h2>{t.name}</h2>
-          <p>{t.description}</p>
-        </div>)
-        ;
-      });
-  }
-  render() {
-    const ts = this.loadTasks();
-    return (
-      <div className="mainWrapper">
-        <h1>{this.state.name}</h1>
-        <div className="tasksWrapper">
-            {ts}
-        </div>
 
-      </div>
+  render() {
+    return (
+      <Container>
+        <h1>{this.state.name}</h1>
+
+          <CardDeck>
+          {this.state.tasks && this.state.tasks.map((t,i) => (
+              <Task  data={t} key={i}/>
+            ))}
+          </CardDeck>
+
+      </Container>
     );
   }
 }

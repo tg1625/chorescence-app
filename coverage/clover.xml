@@ -1,6 +1,107 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1617632449215" clover="3.2.0">
-  <project timestamp="1617632449215" name="All files">
-    <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0" elements="0" coveredelements="0" complexity="0" loc="0" ncloc="0" packages="0" files="0" classes="0"/>
+<coverage generated="1617851879163" clover="3.2.0">
+  <project timestamp="1617851879163" name="All files">
+    <metrics statements="59" coveredstatements="9" conditionals="20" coveredconditionals="10" methods="31" coveredmethods="5" elements="110" coveredelements="24" complexity="0" loc="59" ncloc="59" packages="3" files="11" classes="11"/>
+    <package name="src">
+      <metrics statements="16" coveredstatements="4" conditionals="10" coveredconditionals="3" methods="6" coveredmethods="2"/>
+      <file name="App.js" path="C:\Users\tatyg\Desktop\chorescence\src\App.js">
+        <metrics statements="6" coveredstatements="4" conditionals="6" coveredconditionals="3" methods="4" coveredmethods="2"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+      </file>
+      <file name="index.js" path="C:\Users\tatyg\Desktop\chorescence\src\index.js">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+      </file>
+      <file name="reportWebVitals.js" path="C:\Users\tatyg\Desktop\chorescence\src\reportWebVitals.js">
+        <metrics statements="8" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+        <line num="2" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components">
+      <metrics statements="7" coveredstatements="4" conditionals="8" coveredconditionals="7" methods="5" coveredmethods="2"/>
+      <file name="Header.js" path="C:\Users\tatyg\Desktop\chorescence\src\components\Header.js">
+        <metrics statements="4" coveredstatements="4" conditionals="8" coveredconditionals="7" methods="2" coveredmethods="2"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+      </file>
+      <file name="LoginForm.js" path="C:\Users\tatyg\Desktop\chorescence\src\components\LoginForm.js">
+        <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.pages">
+      <metrics statements="36" coveredstatements="1" conditionals="2" coveredconditionals="0" methods="20" coveredmethods="1"/>
+      <file name="CreateGroup.js" path="C:\Users\tatyg\Desktop\chorescence\src\pages\CreateGroup.js">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+      <file name="Dashboard.js" path="C:\Users\tatyg\Desktop\chorescence\src\pages\Dashboard.js">
+        <metrics statements="14" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="0"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+      </file>
+      <file name="GroupDashboard.js" path="C:\Users\tatyg\Desktop\chorescence\src\pages\GroupDashboard.js">
+        <metrics statements="17" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="7" coveredmethods="0"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="19" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+      </file>
+      <file name="Index.js" path="C:\Users\tatyg\Desktop\chorescence\src\pages\Index.js">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="5" count="1" type="stmt"/>
+      </file>
+      <file name="JoinGroup.js" path="C:\Users\tatyg\Desktop\chorescence\src\pages\JoinGroup.js">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+      <file name="Login.js" path="C:\Users\tatyg\Desktop\chorescence\src\pages\Login.js">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
+    </package>
   </project>
 </coverage>
