@@ -1,26 +1,26 @@
-import logo from './logo.svg';
-import React, { Component } from 'react';
+// import logo from './logo.svg';
+import React, {Component} from 'react';
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
   Redirect,
-  withRouter
+  Route,
+  BrowserRouter as Router,
+  Switch
 } from "react-router-dom";
+import PropTypes from 'prop-types';
 
 //Styles
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.css';
 
-import Button from 'react-bootstrap/Button';
-
 //Components/Pages
+import CreateGroup from './pages/CreateGroup';
+import Dashboard from './pages/Dashboard';
 import Header from './components/Header';
 import Index from './pages/Index';
 import Login from './pages/Login';
 import GroupDashboard from './pages/GroupDashboard';
-import Dashboard from './pages/Dashboard';
-import CreateGroup from './pages/CreateGroup';
+
+
 import JoinGroup from './pages/JoinGroup';
 
 class App extends Component {
@@ -32,7 +32,7 @@ class App extends Component {
   }
 
   toggleLogin(){
-    this.setState({ loggedIn: !this.state.loggedIn })
+    this.setState({loggedIn: !this.state.loggedIn})
   }
 
   render() {
@@ -50,13 +50,13 @@ class App extends Component {
             {/* Homepage route  */}
             <Route exact path="/">
               {
-              this.state.loggedIn ? (<Redirect to="dashboard"/>) : <Index/> 
+              this.state.loggedIn ? <Redirect to="dashboard"/> : <Index/> 
               }
             </Route>
             {/* Dashboard route */}
             <Route exact path="/dashboard">
             {
-              !this.state.loggedIn ? (<Redirect to="/"/>) : <Dashboard/> 
+              !this.state.loggedIn ? <Redirect to="/"/> : <Dashboard/> 
               }
             </Route>
             <Route exact path="/group">
@@ -83,7 +83,7 @@ class App extends Component {
             {/* Login route  */}
             <Route exact path="/login">
               {
-              this.state.loggedIn ? (<Redirect to="dashboard"/>) : <Login/> 
+              this.state.loggedIn ? <Redirect to="dashboard"/> : <Login/> 
               }
             </Route>
             {/* Sign Up Path  */}
@@ -98,4 +98,9 @@ class App extends Component {
   }
 }
 
+App.propTypes = {
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired
+  })
+};
 export default App;

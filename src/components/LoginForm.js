@@ -1,10 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {Form, Button} from 'react-bootstrap';
 
 class LoginForm extends Component {
-  constructor(props){
-    super(props);
-  }
   render() {
     return (
       <Form>
@@ -26,14 +23,6 @@ class LoginForm extends Component {
           Submit
         </Button>
     </Form>
-    //     <form className="forms" onSubmit={() => console.log("Submit login")}>
-    //     <h3>Login</h3>
-    //     <label htmlFor="loginEmail">Email</label>
-    //     <input type="email" name="loginEmail" placeholder="Email"/>
-    //     <label htmlFor="loginPassword">Password</label>
-    //     <input type="password" name="loginPassword" placeholder="Password"/>
-    //     <button type="submit">Submit</button>
-    // </form>
     )
   }
 }

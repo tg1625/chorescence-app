@@ -1,15 +1,16 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 
 class Task extends Component {
   constructor(props){
     super(props);
-    
   }
+
   render() {
     console.log("Data", this.props.data);
     return (
-        <Card style={{ width: '18rem' }}>
+        <Card style={{width: '18rem'}}>
             <Card.Body>
                 <Card.Title>{this.props.data.name}</Card.Title>
                 <Card.Text>
@@ -33,5 +34,18 @@ class Task extends Component {
     )
   }
 }
+
+Task.propTypes = {
+  data: PropTypes.shape({
+    name: PropTypes.string,
+    dueDate: PropTypes.string,
+    description: PropTypes.string,
+    assigned: PropTypes.shape({
+      name: PropTypes.string,
+      id: PropTypes.number
+    })
+  })
+};
+
 
 export default Task;

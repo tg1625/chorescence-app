@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
+import PropTypes from 'prop-types';
 
 class Header extends Component {
   constructor(props){
@@ -14,9 +15,10 @@ class Header extends Component {
       this.state.links = [
         {name: "Home", a: "/"},
         {name: "Profile", a: "#"},
-        {name: "Sign Out", a: "#"},
+        {name: "Sign Out", a: "#"}
       ];  
-    }else{
+    }
+    else{
       this.state.links = [
         {name: "Home", a:"/"},
         {name: "Login", a:"/login"},
@@ -25,20 +27,21 @@ class Header extends Component {
     }
   }
 
-  componentDidUpdate(){
+  componentDidUpdate(prevProps){
     //Set up links
-    if(this.props.loggedIn){
-      this.state.links = [
+    if(this.props.loggedIn && !prevProps.loggedIn){
+      this.setState({links: [
         {name: "Home", a: "/"},
         {name: "Profile", a: "#"},
-        {name: "Sign Out", a: "#"},
-      ];  
-    }else{
-      this.state.links = [
+        {name: "Sign Out", a: "#"}
+      ]});  
+    }
+    else if (!this.props.loggedIn && !prevProps.loggedIn){
+      this.setState({links: [
         {name: "Home", a:"/"},
         {name: "Login", a:"/login"},
         {name: "Sign Up", a:"/signup"}
-      ]; 
+      ]});  
     }
   }
 
@@ -52,9 +55,7 @@ class Header extends Component {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ml-auto">
-              {this.state.links && this.state.links.map((l,i) => (
-                <Nav.Link href={l.a}>{l.name}</Nav.Link>
-              ))}
+              {this.state.links && this.state.links.map((l, i) => <Nav.Link href={l.a} key={i}>{l.name}</Nav.Link>)}
             </Nav>
           </Navbar.Collapse>
         </Navbar>
@@ -62,5 +63,9 @@ class Header extends Component {
     );
   }
 }
+
+Header.propTypes = {
+  loggedIn: PropTypes.bool
+};
 
 export default Header;
