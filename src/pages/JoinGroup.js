@@ -2,6 +2,11 @@ import React, {Component} from 'react';
 import {Container, Form, Button} from 'react-bootstrap';
 
 class JoinGroup extends Component {
+  constructor(props) {
+    super(props)
+    this.handleSubmit = this.handleSubmit.bind(this)
+}
+
   handleSubmit(event){
     console.log(event.target.code.value);
     event.preventDefault();

@@ -8,6 +8,7 @@ class CommentForm extends Component{
         super(props)
         this.handleSubmit = this.handleSubmit.bind(this)
     }
+
     handleSubmit(event){
         event.preventDefault();
         console.log(event.target.comment.value);
@@ -21,6 +22,7 @@ class CommentForm extends Component{
             console.log(error);
         });
     }
+
     render(){
         return(
             <Form onSubmit={this.handleSubmit}>
@@ -36,8 +38,8 @@ class CommentForm extends Component{
 }
 
 CommentForm.propTypes = {
-    groupId: PropTypes.number,
     taskId: PropTypes.number,
+    groupId: PropTypes.number
 }
 
 export default CommentForm;

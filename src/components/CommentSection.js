@@ -14,8 +14,8 @@ class CommentSection extends Component{
                 <Accordion.Collapse eventKey="0">
                     <Card.Body>
                     {this.props.comments && this.props.comments.map((c, i) =>
-                        <div>{c.commentor}: {c.comment}</div>
-                    )}
+                        <div key={i}>{c.commentor}: {c.comment}</div>)
+                    }
                     <CommentForm groupId={this.props.groupId} taskId={this.props.taskId}/>
                     </Card.Body>
                 </Accordion.Collapse>
@@ -31,7 +31,7 @@ CommentSection.propTypes = {
     comments: PropTypes.shape({
         commentor: PropTypes.number,
         comment: PropTypes.string
-      }), 
+      })
 }
 
 export default CommentSection;
