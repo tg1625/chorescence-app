@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import Card from 'react-bootstrap/Card';
+import {Accordion, Card} from 'react-bootstrap';
+import CommentSection from '../components/CommentSection';
 
 class Task extends Component {
   constructor(props){
@@ -18,28 +19,27 @@ class Task extends Component {
                 </Card.Text>
                 <Card.Link href="#">Mark Done</Card.Link>
             </Card.Body>
+            <CommentSection comments={this.props.data.comments} groupId={this.props.groupId} taskId={this.props.data.id}/>
             <Card.Footer className="text-muted">
               Assigned to: <strong>{this.props.data.assigned.name}</strong>
               <span className="float-right">Due by:<strong> {this.props.data.dueDate}</strong></span> 
             </Card.Footer>
         </Card>
-        // <form className="forms" onSubmit={() => console.log("Submit login")}>
-        // <h3>Login</h3>
-        // <label htmlFor="loginEmail">Email</label>
-        // <input type="email" name="loginEmail" placeholder="Email"/>
-        // <label htmlFor="loginPassword">Password</label>
-        // <input type="password" name="loginPassword" placeholder="Password"/>
-        // <button type="submit">Submit</button>
-    // </form>
     )
   }
 }
 
 Task.propTypes = {
+  groupId: PropTypes.number,
   data: PropTypes.shape({
     name: PropTypes.string,
+    id: PropTypes.number,
     dueDate: PropTypes.string,
     description: PropTypes.string,
+    comments: PropTypes.shape({
+      commentor: PropTypes.number,
+      comment: PropTypes.string
+    }),
     assigned: PropTypes.shape({
       name: PropTypes.string,
       id: PropTypes.number

@@ -45,7 +45,7 @@ class GroupDashboard extends Component {
         <h1>{this.state.name}</h1>
 
           <CardDeck>
-          {this.state.tasks && this.state.tasks.map((t, i) => <Task data={t} key={i}/>)}
+          {this.state.tasks && this.state.tasks.map((t, i) => <Task data={t} groupId={this.state.id} key={i}/>)}
           </CardDeck>
 
       </Container>
