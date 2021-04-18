@@ -14,11 +14,13 @@ class GroupDashboard extends Component {
     this.state = {
       tasks: [],
       name: null,
+      members: [],
       id: null
-    }
+    };
+    this.loadData();
   }
 
-  componentDidMount(){
+  loadData(){
     //going through the URL to get the group ID and name
     const loc = this.props.location;
     let groupid = null;
@@ -38,6 +40,37 @@ class GroupDashboard extends Component {
     catch((error) => {
         console.log(error);
     })
+    this.loadGroupMembers(groupid);
+  }
+
+  async loadGroupMembers(groupid){
+    let groupIds = [];
+    //getting group data 
+    await axios.get(`https://chorescence-api.herokuapp.com/group/?id=${groupid}`). 
+    then((response) => {
+        // console.log("Group data", response);
+        response.data.admins.forEach((m) => groupIds.push(m));
+        response.data.members.forEach((m) => groupIds.push(m));
+    }).
+    catch((error) => {
+        console.log(error);
+    });
+    console.log("Members", groupIds);
+    let memberData = [];
+    //get data for each user
+    for(let i = 0; i < groupIds.length; i++){
+      // console.log(`We searching! https://chorescence-api.herokuapp.com/user/?id=${groupIds[i]}`);
+      await axios.get(`https://chorescence-api.herokuapp.com/user/?id=${groupIds[i]}`). 
+      then((response) => {
+          // console.log("User data", response);
+          memberData.push({name: response.data.name, id: response.data.id});
+      }).
+      catch((error) => {
+          console.log(error);
+      });
+    }
+    console.log("Membersss with name", memberData);
+    this.setState({members: memberData});
   }
 
   render() {
@@ -54,7 +87,7 @@ class GroupDashboard extends Component {
         <Row>
           <Col>
             <CardDeck>
-            {this.state.tasks && this.state.tasks.map((t, i) => <Task data={t} groupId={this.state.id} key={i}/>)}
+            {this.state.tasks && this.state.tasks.map((t, i) => <Task data={t} groupId={this.state.id} members={this.state.members} key={i}/>)}
             </CardDeck>
           </Col>
         </Row>

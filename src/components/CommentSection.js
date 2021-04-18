@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Accordion, Card} from 'react-bootstrap';
 import CommentForm from './CommentForm';
+import Comment from './Comment';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faComment} from '@fortawesome/free-regular-svg-icons'
 
@@ -18,7 +19,7 @@ class CommentSection extends Component{
                 <Accordion.Collapse eventKey="0">
                     <Card.Body>
                     {this.props.comments && this.props.comments.map((c, i) =>
-                        <div key={i}>{c.commentor}: {c.comment}</div>)
+                    <Comment key={i} comment={c} members={this.props.members} />)
                     }
                     <CommentForm groupId={this.props.groupId} taskId={this.props.taskId}/>
                     </Card.Body>
@@ -31,11 +32,9 @@ class CommentSection extends Component{
 
 CommentSection.propTypes = {
     taskId: PropTypes.number,
-    groupId: PropTypes.number,
-    comments: PropTypes.shape({
-        commentor: PropTypes.number,
-        comment: PropTypes.string
-      })
+    members: PropTypes.array,
+    groupId: PropTypes.string,
+    comments: PropTypes.array
 }
 
 export default CommentSection;

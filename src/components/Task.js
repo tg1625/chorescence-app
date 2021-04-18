@@ -8,6 +8,18 @@ import EditTaskModal from '../components/EditTaskModal';
 class Task extends Component {
   constructor(props){
     super(props);
+    const mem = this.props.members.find((m) => m.id == this.props.data.assigned.id);
+    this.state = {
+      assigneeName: ""
+    };
+  }
+
+  componentDidUpdate(prevProps, prevState){
+    if(prevProps.members != this.props.members){
+      //Load name of assignee
+      const mem = this.props.members.find((m) => m.id == this.props.data.assigned.id);
+      mem ? this.setState({assigneeName: mem.name}) : this.setState({assigneeName: ""});
+    }
   }
 
   render() {
@@ -28,9 +40,9 @@ class Task extends Component {
                 </Card.Text>
                 <Card.Link href="#">Mark Done</Card.Link>
             </Card.Body>
-            <CommentSection comments={this.props.data.comments} groupId={this.props.groupId} taskId={this.props.data.id}/>
+            <CommentSection comments={this.props.data.comments} groupId={this.props.groupId} taskId={this.props.data.id} members={this.props.members}/>
             <Card.Footer className="text-muted">
-              Assigned to: <strong>{this.props.data.assigned.name}</strong>
+              Assigned to: <strong>{this.state.assigneeName}</strong>
               <span className="float-right">Due by:<strong> {this.props.data.dueDate}</strong></span> 
             </Card.Footer>
         </Card>
@@ -39,16 +51,14 @@ class Task extends Component {
 }
 
 Task.propTypes = {
+  members: PropTypes.array,
   groupId: PropTypes.number,
   data: PropTypes.shape({
     name: PropTypes.string,
     id: PropTypes.number,
     dueDate: PropTypes.string,
     description: PropTypes.string,
-    comments: PropTypes.shape({
-      commentor: PropTypes.number,
-      comment: PropTypes.string
-    }),
+    comments: PropTypes.array,
     assigned: PropTypes.shape({
       name: PropTypes.string,
       id: PropTypes.number
