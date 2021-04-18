@@ -18,9 +18,8 @@ import Dashboard from './pages/Dashboard';
 import Header from './components/Header';
 import Index from './pages/Index';
 import Login from './pages/Login';
+import SignUp from './pages/SignUp';
 import GroupDashboard from './pages/GroupDashboard';
-
-
 import JoinGroup from './pages/JoinGroup';
 
 class App extends Component {
@@ -40,7 +39,7 @@ class App extends Component {
     return (
       <div className="siteWrapper">
         <Header loggedIn={this.state.loggedIn} />
-        <button className="btn" onClick={() => this.toggleLogin()}>
+        <button className="btn-primary" onClick={() => this.toggleLogin()}>
           Toggle Login
         </button>
       
@@ -88,7 +87,9 @@ class App extends Component {
             </Route>
             {/* Sign Up Path  */}
             <Route exact path="/signup">
-              
+            {
+              this.state.loggedIn ? <Redirect to="dashboard"/> : <SignUp/> 
+              }
             </Route>
 
           </Switch>

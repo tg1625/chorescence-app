@@ -38,7 +38,7 @@ class Dashboard extends Component {
     }
 
     render() {
-        console.log("Rendering groups:", this.state.groups);
+        // console.log("Rendering groups:", this.state.groups);
         return (
         <Container>
             <h1>Groups</h1>

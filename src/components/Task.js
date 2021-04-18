@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Accordion, Card} from 'react-bootstrap';
+import {Accordion, Card, Row, Col} from 'react-bootstrap';
 import CommentSection from '../components/CommentSection';
+import EditTaskModal from '../components/EditTaskModal';
+
 
 class Task extends Component {
   constructor(props){
@@ -13,7 +15,14 @@ class Task extends Component {
     return (
         <Card style={{width: '18rem'}}>
             <Card.Body>
-                <Card.Title>{this.props.data.name}</Card.Title>
+                <Card.Title>
+                  <Row>
+                    <Col>{this.props.data.name}</Col>
+                    <Col sm="auto">
+                      <EditTaskModal/>
+                    </Col>
+                  </Row>  
+                </Card.Title>
                 <Card.Text>
                 {this.props.data.description}
                 </Card.Text>

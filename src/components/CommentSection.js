@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Accordion, Card} from 'react-bootstrap';
 import CommentForm from './CommentForm';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faComment} from '@fortawesome/free-regular-svg-icons'
 
 class CommentSection extends Component{
     render(){
@@ -9,7 +11,9 @@ class CommentSection extends Component{
             <Accordion>
             <Card style={{margin: '0'}}>
                 <Accordion.Toggle as={Card.Header} eventKey="0" >
-                    Click to See Comments  
+                    Show Comments{" "}
+                    <FontAwesomeIcon icon={faComment} />
+                    
                 </Accordion.Toggle>
                 <Accordion.Collapse eventKey="0">
                     <Card.Body>

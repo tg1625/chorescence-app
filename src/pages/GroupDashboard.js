@@ -3,7 +3,8 @@ import axios from "axios";
 import {withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Task from '../components/Task';
-import {Container, CardDeck} from 'react-bootstrap';
+import TaskAdderModal from '../components/AddTaskModal';
+import {Container, CardDeck, Button, Row, Col} from 'react-bootstrap';
 // import { CardDeck } from 'react-bootstrap';
 
 
@@ -42,12 +43,21 @@ class GroupDashboard extends Component {
   render() {
     return (
       <Container>
-        <h1>{this.state.name}</h1>
-
-          <CardDeck>
-          {this.state.tasks && this.state.tasks.map((t, i) => <Task data={t} groupId={this.state.id} key={i}/>)}
-          </CardDeck>
-
+        <Row style={{justifyContent: "space-between"}}>
+          <Col>
+          <h1>{this.state.name}</h1>
+          </Col>
+          <Col sm="auto">
+          <TaskAdderModal/>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <CardDeck>
+            {this.state.tasks && this.state.tasks.map((t, i) => <Task data={t} groupId={this.state.id} key={i}/>)}
+            </CardDeck>
+          </Col>
+        </Row>
       </Container>
     );
   }

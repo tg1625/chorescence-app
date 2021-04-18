@@ -6,6 +6,10 @@
     "node": "12.15.0"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-regular-svg-icons": "^5.15.3",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@fortawesome/react-fontawesome": "^0.1.14",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.7.2",
@@ -33,7 +37,11 @@
       "react-app/jest"
     ]
   },
-  "eslintIgnore": ["*.test.js", "*.css", "*.svg"],
+  "eslintIgnore": [
+    "*.test.js",
+    "*.css",
+    "*.svg"
+  ],
   "browserslist": {
     "production": [
       ">0.2%",
