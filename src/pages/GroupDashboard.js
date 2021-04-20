@@ -4,7 +4,7 @@ import {Link, withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Task from '../components/Task';
 import TaskAdderModal from '../components/AddTaskModal';
-import {Container, CardDeck, Button, Row, Col} from 'react-bootstrap';
+import {Container, CardDeck, Button, Row, Col, Accordion, Card} from 'react-bootstrap';
 // import { CardDeck } from 'react-bootstrap';
 
 
@@ -89,8 +89,34 @@ class GroupDashboard extends Component {
         <Row>
           <Col>
             <CardDeck>
-            {this.state.tasks && this.state.tasks.map((t, i) => <Task data={t} groupId={this.state.id} members={this.state.members} key={i}/>)}
+            {this.state.tasks && this.state.tasks.
+            filter(function (task){
+              return !task.completed;
+            }).
+            map((t, i) => <Task data={t} groupId={this.state.id} members={this.state.members} key={i}/>)}
             </CardDeck>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+          <Accordion defaultActiveKey="1">
+            <Card>
+              <Accordion.Toggle as={Card.Header} eventKey="0">
+                Show Completed Tasks
+              </Accordion.Toggle>
+              <Accordion.Collapse eventKey="0">
+                <Card.Body>
+                <CardDeck>
+                {this.state.tasks && this.state.tasks.
+                filter(function (task){
+                  return task.completed;
+                }).
+                map((t, i) => <Task data={t} groupId={this.state.id} members={this.state.members} key={i}/>)}
+                </CardDeck>
+                </Card.Body>
+              </Accordion.Collapse>
+            </Card>
+          </Accordion>  
           </Col>
         </Row>
       </Container>
