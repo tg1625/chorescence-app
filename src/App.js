@@ -21,6 +21,7 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import GroupDashboard from './pages/GroupDashboard';
 import JoinGroup from './pages/JoinGroup';
+import EditGroup from './pages/EditGroup';
 
 class App extends Component {
   constructor(props){
@@ -58,13 +59,13 @@ class App extends Component {
               !this.state.loggedIn ? <Redirect to="/"/> : <Dashboard/> 
               }
             </Route>
-            <Route exact path="/group">
+            <Route exact path="/group/:groupId" component={GroupDashboard}/>
+             
+            <Route exact path="/group/:groupId/edit" component={EditGroup} />
               {/* {
               !this.state.loggedIn ? (<Redirect to="/"/>) : <GroupDashboard/> 
               } */}
-              <GroupDashboard location={this.props.location}/>
-              
-            </Route>
+              {/* <EditGroup/> */}
             {/* Group Creation route  */}
             <Route exact path="/creategroup">
               {/* {
@@ -99,9 +100,9 @@ class App extends Component {
   }
 }
 
-App.propTypes = {
-  location: PropTypes.shape({
-    pathname: PropTypes.string.isRequired
-  })
-};
+// App.propTypes = {
+//   location: PropTypes.shape({
+//     pathname: PropTypes.string.isRequired
+//   })
+// };
 export default App;

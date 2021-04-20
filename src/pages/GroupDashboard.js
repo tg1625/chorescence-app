@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from "axios";
-import {withRouter} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Task from '../components/Task';
 import TaskAdderModal from '../components/AddTaskModal';
@@ -11,65 +11,60 @@ import {Container, CardDeck, Button, Row, Col} from 'react-bootstrap';
 class GroupDashboard extends Component {
   constructor(props){
     super(props);
+    console.log("Props", props.match);
     this.state = {
       tasks: [],
-      name: null,
+      name: "",
       members: [],
       id: null
-    };
-    this.loadData();
+    }; 
   }
 
-  loadData(){
-    //going through the URL to get the group ID and name
-    const loc = this.props.location;
-    let groupid = null;
-    if(loc){
-      let searchParams = loc.search;
-      const urlParams = new URLSearchParams(searchParams);
-      groupid = urlParams.get("group");
-      this.setState({id: groupid});
-      this.setState({name: urlParams.get("name")})
-    }
+  componentDidMount(){
+    this.setState({id: this.props.match.params.groupId});
+    this.loadData(this.props.match.params.groupId);
+    this.loadGroupData(this.props.match.params.groupId);
+  }
+
+  loadData(groupId){
     //getting the tasks for that group ID
-    axios.get(`https://chorescence-api.herokuapp.com/tasks/?groupid=${groupid}`). 
+    axios.get(`https://chorescence-api.herokuapp.com/tasks/?groupid=${groupId}`).
     then((response) => {
-        console.log(response);
+        console.log("Tasks Data", response);
         this.setState({tasks: response.data});
+        // this.
     }).
     catch((error) => {
         console.log(error);
     })
-    this.loadGroupMembers(groupid);
   }
 
-  async loadGroupMembers(groupid){
-    let groupIds = [];
+  async loadGroupData(groupid){
+    let memberData = [];
     //getting group data 
     await axios.get(`https://chorescence-api.herokuapp.com/group/?id=${groupid}`). 
     then((response) => {
         // console.log("Group data", response);
-        response.data.admins.forEach((m) => groupIds.push(m));
-        response.data.members.forEach((m) => groupIds.push(m));
+        this.setState({name: response.data.name});
+        response.data.admins.forEach((m) => memberData.push({role:"admin", id: m}));
+        response.data.members.forEach((m) => memberData.push({role:"member", id: m}));
     }).
     catch((error) => {
         console.log(error);
     });
-    console.log("Members", groupIds);
-    let memberData = [];
     //get data for each user
-    for(let i = 0; i < groupIds.length; i++){
+    for(let i = 0; i < memberData.length; i++){
       // console.log(`We searching! https://chorescence-api.herokuapp.com/user/?id=${groupIds[i]}`);
-      await axios.get(`https://chorescence-api.herokuapp.com/user/?id=${groupIds[i]}`). 
+      await axios.get(`https://chorescence-api.herokuapp.com/user/?id=${memberData[i].id}`). 
       then((response) => {
           // console.log("User data", response);
-          memberData.push({name: response.data.name, id: response.data.id});
+          memberData[i].name = response.data.name;
       }).
       catch((error) => {
           console.log(error);
       });
     }
-    console.log("Membersss with name", memberData);
+    console.log("Members with names", memberData);
     this.setState({members: memberData});
   }
 
@@ -78,10 +73,17 @@ class GroupDashboard extends Component {
       <Container>
         <Row style={{justifyContent: "space-between"}}>
           <Col>
-          <h1>{this.state.name}</h1>
+            <h1>{this.state.name}</h1>
           </Col>
           <Col sm="auto">
-          <TaskAdderModal/>
+            <TaskAdderModal/>
+            <Link to={{
+              state: {
+                members: this.state.members
+              },
+              pathname: `/group/${this.state.id}/edit`
+            }}><Button>Edit Group</Button> </Link>
+            
           </Col>
         </Row>
         <Row>
@@ -97,10 +99,7 @@ class GroupDashboard extends Component {
 }
 
 GroupDashboard.propTypes = {
-  location: PropTypes.shape({
-    search: PropTypes.string.isRequired,
-    pathname: PropTypes.string.isRequired
-  })
+  match: PropTypes.object
 };
 
-export default withRouter(GroupDashboard);
+export default GroupDashboard;

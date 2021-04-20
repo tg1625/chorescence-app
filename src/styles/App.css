@@ -31,3 +31,4 @@ body{
   color: #6674CC;
   cursor: pointer;
 }
+.row+.row{margin-top:1rem;}
