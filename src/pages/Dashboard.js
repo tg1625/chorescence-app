@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {Container, ListGroup} from 'react-bootstrap';
+import {Link, withRouter} from 'react-router-dom';
 
 class Dashboard extends Component {
     constructor(props){
@@ -43,7 +44,15 @@ class Dashboard extends Component {
         <Container>
             <h1>Groups</h1>
             <ListGroup>
-                {this.state.groups && this.state.groups.map((g, i) => <ListGroup.Item key={i}><a href={`group/${g.id}`}>{g.name}</a></ListGroup.Item>)}
+                {this.state.groups && this.state.groups.map((g, i) => 
+                    <ListGroup.Item key={i}>
+                        <Link to={{
+                            state: {
+                                userGroups: this.state.groups
+                            },
+                        pathname: `/group/${g.id}`
+                        }}>{g.name}</Link>
+                    </ListGroup.Item>)}
                 <ListGroup.Item><a href="/joingroup">Join a Group</a></ListGroup.Item>
                 <ListGroup.Item><a href="/creategroup">Create a Group</a></ListGroup.Item>
             </ListGroup>

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {Container, Row, Col, Form, Table, Button} from 'react-bootstrap';
+import {Link, withRouter} from 'react-router-dom';
 import EditGroupNameForm from '../components/EditGroupNameForm';
 import EditGroupMembersForm from '../components/EditGroupMembersForm';
 // import { Button } from 'bootstrap';
@@ -21,6 +22,9 @@ class EditGroup extends Component{
     render(){
         return(
             <Container>
+                <Row>
+                <Link to={"/group/" + this.props.match.params.groupId}>{"<"} Back to Dashboard</Link>
+                </Row>
                 <Row>
                     <h1>Edit Group</h1>
                 </Row>
