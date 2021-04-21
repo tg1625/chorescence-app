@@ -34,14 +34,14 @@ class TaskAdderModal extends Component{
                   <Modal.Title>Create a New Task</Modal.Title>
                 </Modal.Header>
                 <Modal.Body><TaskForm action="add"></TaskForm></Modal.Body>
-                <Modal.Footer>
+                {/* <Modal.Footer>
                   <Button variant="secondary" onClick={this.handleClose}>
                     Close
                   </Button>
                   <Button variant="primary" onClick={this.handleClose}>
                     Save Changes
                   </Button>
-                </Modal.Footer>
+                </Modal.Footer> */}
               </Modal>
             </>
           );

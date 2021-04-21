@@ -79,6 +79,7 @@ class GroupDashboard extends Component {
             <TaskAdderModal/>
             <Link to={{
               state: {
+                name: this.state.name,
                 members: this.state.members
               },
               pathname: `/group/${this.state.id}/edit`

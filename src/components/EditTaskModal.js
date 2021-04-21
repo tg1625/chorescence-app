@@ -36,14 +36,14 @@ class EditTaskModal extends Component{
                   <Modal.Title>Edit Task</Modal.Title>
                 </Modal.Header>
                 <Modal.Body><TaskForm action="edit"></TaskForm></Modal.Body>
-                <Modal.Footer>
+                {/* <Modal.Footer>
                   <Button variant="secondary" onClick={this.handleClose}>
                     Close
                   </Button>
                   <Button variant="primary" onClick={this.handleClose}>
                     Save Changes
                   </Button>
-                </Modal.Footer>
+                </Modal.Footer> */}
               </Modal>
             </>
           );
