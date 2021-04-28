@@ -26,7 +26,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint ./src/**",
-    "lint-fix": "eslint --fix ./src/** --ignore-pattern ./src/styles/**"
+    "lint-fix": "eslint --fix ./src/** --ignore-pattern ./src/styles/**",
+    "docs": "npx styleguidist server"
   },
   "eslintConfig": {
     "extends": [
@@ -52,10 +53,12 @@
     ]
   },
   "devDependencies": {
-    "eslint": "^7.24.0",
-    "eslint-plugin-react": "^7.23.2",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
-    "@testing-library/user-event": "^12.7.2"
+    "@testing-library/user-event": "^12.7.2",
+    "eslint": "^7.24.0",
+    "eslint-plugin-react": "^7.23.2",
+    "react-docgen": "^5.3.1",
+    "react-styleguidist": "^11.1.6"
   }
 }

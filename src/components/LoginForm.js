@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import {Form, Button} from 'react-bootstrap';
 
+/**
+ * Form to handle Login 
+ */
 class LoginForm extends Component {
   render() {
     return (

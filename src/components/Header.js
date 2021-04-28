@@ -3,7 +3,14 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import PropTypes from 'prop-types';
 
+/**
+ * Header and navigation bar 
+ */
 class Header extends Component {
+  static propTypes = {
+    loggedIn: PropTypes.bool
+  };
+
   constructor(props){
     super(props);
     console.log("Re render");
@@ -63,9 +70,5 @@ class Header extends Component {
     );
   }
 }
-
-Header.propTypes = {
-  loggedIn: PropTypes.bool
-};
 
 export default Header;

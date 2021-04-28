@@ -2,12 +2,20 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {Container, Row, Col, Form, Table, Button} from 'react-bootstrap';
 
+/**
+ * Form to edit members of a group
+ */
 class EditGroupMembersForm extends Component{
     constructor(props){
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    /**
+     * handles form submission
+     * @param {} event
+     * @public  
+     */
     handleSubmit(event){
         console.log("Edit:", event.target);
         event.preventDefault();

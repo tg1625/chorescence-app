@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Button, Form} from 'react-bootstrap';
 
-
+/**
+ * Form used to edit or create a new task
+ */
 class TaskForm extends Component{
     constructor(props) {
         super(props)
@@ -11,18 +13,35 @@ class TaskForm extends Component{
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    /**
+     * Handles creation of a new task
+     * @param {*} event
+     * @public 
+     */
     handleCreate(event){
       console.log("Create:", event.target);
       event.preventDefault();
         // alert('You have submitted the form.');
     }
 
+    /**
+     * Handles editing a task
+     * @param {*} event
+     * @public
+     */
     handleEdit(event){
       console.log("Edit", event.target);
       event.preventDefault();
       // alert('You have submitted the form.');
     }
 
+    /**
+     * Handles form submission
+     * 
+     * Uses the `action` prop to determine whether to run `handleCreate` or `handleEdit`                                                                                                                                                                                                                                                                                                                                                               
+     * @param {*} event 
+     * @public
+     */
     handleSubmit(event){
       console.log("We submitting");
       if(this.props.action == "add"){

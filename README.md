@@ -38,4 +38,5 @@ Since this project is built using Node, we will be using npm instead of make
 - npm test -- --coverage: compile and run tests with coverage
 - npm install: install all the dependencies for the project
     - the equivalent of make dev_env
+- npm run docs: run React component documenation server
 

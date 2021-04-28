@@ -5,7 +5,11 @@ import TaskForm from './TaskForm';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faEdit} from '@fortawesome/free-regular-svg-icons'
 
-
+/**
+ * Button/Modal to edit a task
+ * 
+ * Contains the TaskForm component
+ */
 class EditTaskModal extends Component{
     constructor(props){
         super(props);
@@ -16,10 +20,18 @@ class EditTaskModal extends Component{
         };
     }
 
+    /**
+     * Closes modal when user clicks close
+     * @public
+     */
     handleClose(){
         this.setState({show:false});
     }
 
+    /**
+     * Opens modal when the user clicks the Edit Task button
+     * @public
+     */
     handleShow(){
         this.setState({show:true});
     }
@@ -36,14 +48,6 @@ class EditTaskModal extends Component{
                   <Modal.Title>Edit Task</Modal.Title>
                 </Modal.Header>
                 <Modal.Body><TaskForm action="edit"></TaskForm></Modal.Body>
-                {/* <Modal.Footer>
-                  <Button variant="secondary" onClick={this.handleClose}>
-                    Close
-                  </Button>
-                  <Button variant="primary" onClick={this.handleClose}>
-                    Save Changes
-                  </Button>
-                </Modal.Footer> */}
               </Modal>
             </>
           );

@@ -6,7 +6,19 @@ import Comment from './Comment';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faComment} from '@fortawesome/free-regular-svg-icons'
 
+/**
+ * Section for task comments
+ * 
+ * Contains Comment and CommentForm components
+ */
 class CommentSection extends Component{
+    static propTypes = {
+        taskId: PropTypes.number,
+        members: PropTypes.array,
+        groupId: PropTypes.string,
+        comments: PropTypes.array
+    }
+
     render(){
         return(
             <Accordion>
@@ -28,13 +40,6 @@ class CommentSection extends Component{
         </Accordion>
         ); 
     }
-}
-
-CommentSection.propTypes = {
-    taskId: PropTypes.number,
-    members: PropTypes.array,
-    groupId: PropTypes.string,
-    comments: PropTypes.array
 }
 
 export default CommentSection;

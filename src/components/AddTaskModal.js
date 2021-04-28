@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 import {Button, Modal} from 'react-bootstrap';
 import TaskForm from './TaskForm.js';
 
-
+/**
+ * Button/Modal for the form to add a task
+ * 
+ * Actual form is in the TaskForm componern
+ * 
+ */
 class TaskAdderModal extends Component{
     constructor(props){
         super(props);
@@ -14,10 +19,19 @@ class TaskAdderModal extends Component{
         };
     }
 
+    /**
+     * Gets called when the user clicks close
+     * @public
+     */
     handleClose(){
         this.setState({show:false});
     }
 
+    /**
+     * Gets called when the user clicks the "Add a Task" button
+     * 
+     * @public
+     */
     handleShow(){
         this.setState({show:true});
     }
@@ -34,14 +48,6 @@ class TaskAdderModal extends Component{
                   <Modal.Title>Create a New Task</Modal.Title>
                 </Modal.Header>
                 <Modal.Body><TaskForm action="add"></TaskForm></Modal.Body>
-                {/* <Modal.Footer>
-                  <Button variant="secondary" onClick={this.handleClose}>
-                    Close
-                  </Button>
-                  <Button variant="primary" onClick={this.handleClose}>
-                    Save Changes
-                  </Button>
-                </Modal.Footer> */}
               </Modal>
             </>
           );

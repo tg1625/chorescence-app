@@ -4,8 +4,28 @@ import {Accordion, Card, Row, Col} from 'react-bootstrap';
 import CommentSection from '../components/CommentSection';
 import EditTaskModal from '../components/EditTaskModal';
 
-
+/**
+ * Component for each individual task card
+ * 
+ * Contains the EditTaskModal and CommentSection components
+ */
 class Task extends Component {
+  static propTypes = {
+    members: PropTypes.array,
+    groupId: PropTypes.number,
+    data: PropTypes.shape({
+      name: PropTypes.string,
+      id: PropTypes.number,
+      dueDate: PropTypes.string,
+      description: PropTypes.string,
+      comments: PropTypes.array,
+      assigned: PropTypes.shape({
+        name: PropTypes.string,
+        id: PropTypes.number
+      })
+    })
+  };
+
   constructor(props){
     super(props);
     const mem = this.props.members.find((m) => m.id == this.props.data.assigned.id);
@@ -14,6 +34,9 @@ class Task extends Component {
     };
   }
 
+  /**
+   * Loads the correct name for the task assignee
+   */
   componentDidUpdate(prevProps, prevState){
     if(prevProps.members != this.props.members){
       //Load name of assignee
@@ -49,22 +72,5 @@ class Task extends Component {
     )
   }
 }
-
-Task.propTypes = {
-  members: PropTypes.array,
-  groupId: PropTypes.number,
-  data: PropTypes.shape({
-    name: PropTypes.string,
-    id: PropTypes.number,
-    dueDate: PropTypes.string,
-    description: PropTypes.string,
-    comments: PropTypes.array,
-    assigned: PropTypes.shape({
-      name: PropTypes.string,
-      id: PropTypes.number
-    })
-  })
-};
-
 
 export default Task;

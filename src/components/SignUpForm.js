@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import {Form, Button, Col} from 'react-bootstrap';
 
+/**
+ * Form to handle sign up
+ */
 class SignUpForm extends Component {
   render() {
     return (

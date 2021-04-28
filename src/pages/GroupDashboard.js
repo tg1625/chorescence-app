@@ -7,8 +7,11 @@ import TaskAdderModal from '../components/AddTaskModal';
 import {Container, CardDeck, Button, Row, Col, Accordion, Card, Dropdown} from 'react-bootstrap';
 // import { CardDeck } from 'react-bootstrap';
 
-
 class GroupDashboard extends Component {
+  static propTypes = {
+    match: PropTypes.object
+  };
+
   constructor(props){
     super(props);
     console.log("Props", props.match);
@@ -145,9 +148,5 @@ class GroupDashboard extends Component {
     );
   }
 }
-
-GroupDashboard.propTypes = {
-  match: PropTypes.object
-};
 
 export default GroupDashboard;

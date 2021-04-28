@@ -1,7 +1,18 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
+/**
+ * Individual comments listed under a task
+ */
 class Comment extends Component{
+    static propTypes = {
+        members: PropTypes.array,
+        comment: PropTypes.shape({
+            commentor: PropTypes.number,
+            comment: PropTypes.string
+        })
+    }
+
     constructor(props){
         super(props);
         this.state = {
@@ -21,14 +32,6 @@ class Comment extends Component{
             <div ><strong>{this.state.name}: </strong> {this.props.comment.comment}</div>
         )
     }
-}
-
-Comment.propTypes = {
-    members: PropTypes.array,
-    comment: PropTypes.shape({
-        commentor: PropTypes.number,
-        comment: PropTypes.string
-    })
 }
 
 export default Comment;
