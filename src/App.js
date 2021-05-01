@@ -27,9 +27,18 @@ import UserProfile from './pages/UserProfile';
 class App extends Component {
   constructor(props){
     super(props);
-    this.state = {
-      userInfo: {},
-      loggedIn: false
+    const user = localStorage.getItem("user");
+    if(user){
+      this.state = {
+        userInfo: user,
+        loggedIn: true
+      }
+    }
+    else{
+      this.state = {
+        userInfo: {},
+        loggedIn: false
+      }
     }
   }
 
@@ -85,34 +94,36 @@ class App extends Component {
             </Route>
             {/* Dashboard route */}
             <Route exact path="/dashboard">
-            {
+              {
               !this.state.loggedIn ? <Redirect to="/"/> : <Dashboard/> 
               }
             </Route>
-            <Route exact path="/group/:groupId" component={GroupDashboard}/>
-             
-            <Route exact path="/group/:groupId/edit" component={EditGroup} />
-              {/* {
-              !this.state.loggedIn ? (<Redirect to="/"/>) : <GroupDashboard/> 
-              } */}
-              {/* <EditGroup/> */}
+            <Route exact path="/group/:groupId">
+              {
+              !this.state.loggedIn ? <Redirect to="/"/> : <GroupDashboard/> 
+              }
+            </Route> 
+            <Route exact path="/group/:groupId/edit">
+              {
+              !this.state.loggedIn ? <Redirect to="/"/> : <EditGroup/> 
+              }
+            </Route>
             {/* Group Creation route  */}
             <Route exact path="/creategroup">
-              {/* {
-              !this.state.loggedIn ? (<Redirect to="/"/>) : <GroupDashboard/> 
-              } */}
-              <CreateGroup/>
+              {
+              !this.state.loggedIn ? <Redirect to="/"/> : <CreateGroup/> 
+              }
+              
             </Route>
             <Route exact path="/joingroup">
-              {/* {
-              !this.state.loggedIn ? (<Redirect to="/"/>) : <GroupDashboard/> 
-              } */}
-              <JoinGroup/>
+              {
+              !this.state.loggedIn ? <Redirect to="/signup"/> : <JoinGroup/> 
+              }
             </Route>
             {/* User Profile Route */}
             <Route exact path="/profile">
               {
-              this.state.loggedIn ? <UserProfile/> : <Index/> 
+              !this.state.loggedIn ? <Redirect to="/"/> : <UserProfile/>
               }
             </Route>
 
@@ -128,7 +139,6 @@ class App extends Component {
               this.state.loggedIn ? <Redirect to="dashboard"/> : <SignUp/> 
               }
             </Route>
-
           </Switch>
         </Router>
       </div>
@@ -136,9 +146,4 @@ class App extends Component {
   }
 }
 
-// App.propTypes = {
-//   location: PropTypes.shape({
-//     pathname: PropTypes.string.isRequired
-//   })
-// };
 export default App;
