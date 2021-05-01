@@ -39,7 +39,7 @@ class Header extends Component {
     if(this.props.loggedIn && !prevProps.loggedIn){
       this.setState({links: [
         {name: "Home", a: "/"},
-        {name: "Profile", a: "#"},
+        {name: "Profile", a: "/profile"},
         {name: "Sign Out", a: "#"}
       ]});  
     }

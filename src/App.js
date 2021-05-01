@@ -22,6 +22,7 @@ import SignUp from './pages/SignUp';
 import GroupDashboard from './pages/GroupDashboard';
 import JoinGroup from './pages/JoinGroup';
 import EditGroup from './pages/EditGroup';
+import UserProfile from './pages/UserProfile';
 
 class App extends Component {
   constructor(props){
@@ -107,6 +108,12 @@ class App extends Component {
               !this.state.loggedIn ? (<Redirect to="/"/>) : <GroupDashboard/> 
               } */}
               <JoinGroup/>
+            </Route>
+            {/* User Profile Route */}
+            <Route exact path="/profile">
+              {
+              this.state.loggedIn ? <UserProfile/> : <Index/> 
+              }
             </Route>
 
             {/* Login route  */}
