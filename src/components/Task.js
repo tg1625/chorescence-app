@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Accordion, Card, Row, Col} from 'react-bootstrap';
+import {Accordion, Button, Card, Row, Col} from 'react-bootstrap';
 import CommentSection from '../components/CommentSection';
 import EditTaskModal from '../components/EditTaskModal';
+import axios from 'axios';
 
 /**
  * Component for each individual task card
@@ -28,8 +29,10 @@ class Task extends Component {
 
   constructor(props){
     super(props);
+    // this.markComplete = this.markComplete.bind(this);
     const mem = this.props.members.find((m) => m.id == this.props.data.assigned.id);
     this.state = {
+      completed: this.props.data.completed,
       assigneeName: ""
     };
   }
@@ -40,28 +43,54 @@ class Task extends Component {
   componentDidUpdate(prevProps, prevState){
     if(prevProps.members != this.props.members){
       //Load name of assignee
-      const mem = this.props.members.find((m) => m.id == this.props.data.assigned.id);
+      const mem = this.props.members.find((m) => m.id == this.props.data.assigned);
       mem ? this.setState({assigneeName: mem.name}) : this.setState({assigneeName: ""});
     }
   }
 
+
+  /**
+   * Handles marking task as complete
+   * @returns 
+   */
+  markComplete(setting){
+    // console.log("Marked!");
+    // axios.patch(`http://localhost:3000/tasks/?groupid=${this.props.groupId}&taskid=${this.props.data.id}`, {completed:setting}, {
+    axios.patch(`https://chorescence-api.herokuapp.com/tasks/?groupid=${this.props.groupId}&taskid=${this.props.data.id}`, {completed:true}, {
+        headers: {
+          // Overwrite Axios's automatically set Content-Type
+          'Content-Type': 'application/json'
+        }
+      }).
+      then((response) => {
+        console.log(response);
+        window.location.reload(false);
+      }).
+      catch((error) => {
+          console.log(error);
+      })
+  }
+
   render() {
-    console.log("Data", this.props.data);
+    console.log("Task Data", this.props.data);
     return (
-        <Card style={{width: '18rem'}}>
+        <Card>
             <Card.Body>
                 <Card.Title>
                   <Row>
-                    <Col>{this.props.data.name}</Col>
+                    <Col>{decodeURIComponent(this.props.data.name)}</Col>
                     <Col sm="auto">
-                      <EditTaskModal/>
+                      <EditTaskModal members={this.props.members} groupId={this.props.groupId}/>
                     </Col>
                   </Row>  
                 </Card.Title>
                 <Card.Text>
-                {this.props.data.description}
+                {decodeURIComponent(this.props.data.description)}
                 </Card.Text>
-                <Card.Link href="#">Mark Done</Card.Link>
+                {this.props.data.completed 
+                ? <Card.Link as={Button} variant="link" onClick={this.markComplete.bind(this, false)} href="#">Mark Incomplete</Card.Link>
+                : <Card.Link as={Button} variant="link" onClick={this.markComplete.bind(this, true)} href="#">Mark Done</Card.Link>
+                }
             </Card.Body>
             <CommentSection comments={this.props.data.comments} groupId={this.props.groupId} taskId={this.props.data.id} members={this.props.members}/>
             <Card.Footer className="text-muted">

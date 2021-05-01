@@ -47,7 +47,7 @@ class TaskAdderModal extends Component{
                 <Modal.Header closeButton>
                   <Modal.Title>Create a New Task</Modal.Title>
                 </Modal.Header>
-                <Modal.Body><TaskForm action="add"></TaskForm></Modal.Body>
+                <Modal.Body><TaskForm action="add" members={this.props.members} groupId={this.props.groupId}></TaskForm></Modal.Body>
               </Modal>
             </>
           );

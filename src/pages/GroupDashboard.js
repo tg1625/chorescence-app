@@ -3,8 +3,8 @@ import axios from "axios";
 import {Link, withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Task from '../components/Task';
-import TaskAdderModal from '../components/AddTaskModal';
-import {Container, CardDeck, Button, Row, Col, Accordion, Card, Dropdown} from 'react-bootstrap';
+import TaskAdderModal from '../components/TaskAdderModal';
+import {Container, CardColumns, Button, Row, Col, Accordion, Card, Dropdown} from 'react-bootstrap';
 // import { CardDeck } from 'react-bootstrap';
 
 class GroupDashboard extends Component {
@@ -48,7 +48,7 @@ class GroupDashboard extends Component {
     //getting group data 
     await axios.get(`https://chorescence-api.herokuapp.com/group/?id=${groupid}`). 
     then((response) => {
-        // console.log("Group data", response);
+        console.log("Group data", response);
         this.setState({name: response.data.name});
         response.data.admins.forEach((m) => memberData.push({role:"admin", id: m}));
         response.data.members.forEach((m) => memberData.push({role:"member", id: m}));
@@ -61,8 +61,8 @@ class GroupDashboard extends Component {
       // console.log(`We searching! https://chorescence-api.herokuapp.com/user/?id=${groupIds[i]}`);
       await axios.get(`https://chorescence-api.herokuapp.com/user/?id=${memberData[i].id}`). 
       then((response) => {
-          // console.log("User data", response);
-          memberData[i].name = response.data.name;
+          console.log("User data", response);
+          memberData[i].name = response.data.fname;
       }).
       catch((error) => {
           console.log(error);
@@ -80,7 +80,7 @@ class GroupDashboard extends Component {
             <h1>{this.state.name}</h1>
           </Col>
           <Col md="auto">
-            <TaskAdderModal/>
+            <TaskAdderModal members={this.state.members} groupId={this.state.id}/>
             <Link to={{
               state: {
                 name: this.state.name,
@@ -113,13 +113,13 @@ class GroupDashboard extends Component {
         </Row>
         <Row>
           <Col>
-            <CardDeck>
+            <CardColumns>
             {this.state.tasks && this.state.tasks.
             filter(function (task){
               return !task.completed;
             }).
             map((t, i) => <Task data={t} groupId={this.state.id} members={this.state.members} key={i}/>)}
-            </CardDeck>
+            </CardColumns>
           </Col>
         </Row>
         <Row>
@@ -131,13 +131,13 @@ class GroupDashboard extends Component {
               </Accordion.Toggle>
               <Accordion.Collapse eventKey="0">
                 <Card.Body>
-                <CardDeck>
+                <CardColumns>
                 {this.state.tasks && this.state.tasks.
                 filter(function (task){
                   return task.completed;
                 }).
                 map((t, i) => <Task data={t} groupId={this.state.id} members={this.state.members} key={i}/>)}
-                </CardDeck>
+                </CardColumns>
                 </Card.Body>
               </Accordion.Collapse>
             </Card>

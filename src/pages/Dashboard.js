@@ -16,14 +16,14 @@ class Dashboard extends Component {
     }
 
     setGroups(){
-        axios.get(`https://chorescence-api.herokuapp.com/user/?id=1`). 
+        axios.get(`https://chorescence-api.herokuapp.com/user/?id=40e6215d-b5c6-4896-987c-f30f3678f608`). 
         then((response) => {
             let out = [];
             // console.log(response);
             for(let i = 0; i < response.data.groups.length; i++){
                 axios.get(`https://chorescence-api.herokuapp.com/group/?id=${response.data.groups[i]}`).
                 then((res) => {
-                    // console.log("Group info:",res);
+                    // console.log("Group info:", res);
                     out.push({name: res.data.name, id: res.data.id})
                     this.setState({groups: out});
                 }).
@@ -39,7 +39,7 @@ class Dashboard extends Component {
     }
 
     render() {
-        // console.log("Rendering groups:", this.state.groups);
+        console.log("Rendering groups:", this.state.groups);
         return (
         <Container>
             <h1>Groups</h1>

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Button, Form} from 'react-bootstrap';
+import axios from 'axios';
 
 /**
  * Form used to edit or create a new task
@@ -19,7 +20,29 @@ class TaskForm extends Component{
      * @public 
      */
     handleCreate(event){
-      console.log("Create:", event.target);
+      const data = {
+        name : event.target.name.value,
+        groupid: this.props.groupId,
+        dueDate: new Date(event.target.date.value + "T03:24:00").toLocaleDateString(),
+        description: encodeURIComponent(event.target.description.value),
+        creationDate: new Date().toLocaleDateString(),
+        assigned: event.target.assigned.value
+      };
+      console.log("Sending", data);
+      // axios.post(`https://chorescence-api.herokuapp.com/tasks/?groupid=${this.props.groupId}data=${data}`).
+      axios.post(`https://chorescence-api.herokuapp.com/tasks/?groupid=${this.props.groupId}`, data, {
+        headers: {
+          // Overwrite Axios's automatically set Content-Type
+          'Content-Type': 'application/json'
+        }
+      }).
+      then((response) => {
+          console.log(response);
+          window.location.reload(false);
+      }).
+      catch((error) => {
+          console.log(error);
+      })
       event.preventDefault();
         // alert('You have submitted the form.');
     }
@@ -60,17 +83,14 @@ class TaskForm extends Component{
             <Form.Control type="text" placeholder="Task Name"></Form.Control>
           </Form.Group>
           <Form.Group controlId="description">
-            <Form.Label>Task Name</Form.Label>
+            <Form.Label>Task Description</Form.Label>
             <Form.Control type="text" placeholder="Task Description"></Form.Control>
           </Form.Group>
-          <Form.Group controlId="assignedTo">
+          <Form.Group controlId="assigned">
             <Form.Label>Assign to</Form.Label>
                 <Form.Control as="select" custom>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+                  {this.props.members && this.props.members.map((m, i) =>
+                    <option value={m.id} key={i}>{m.name}</option>)}
                 </Form.Control>
           </Form.Group>
           <Form.Group controlId="date">

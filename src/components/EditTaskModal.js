@@ -47,7 +47,7 @@ class EditTaskModal extends Component{
                 <Modal.Header closeButton>
                   <Modal.Title>Edit Task</Modal.Title>
                 </Modal.Header>
-                <Modal.Body><TaskForm action="edit"></TaskForm></Modal.Body>
+                <Modal.Body><TaskForm action="edit" members={this.props.members} groupId={this.props.groupId}></TaskForm></Modal.Body>
               </Modal>
             </>
           );
