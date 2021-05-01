@@ -4,6 +4,7 @@ import {Accordion, Button, Card, Row, Col} from 'react-bootstrap';
 import CommentSection from '../components/CommentSection';
 import EditTaskModal from '../components/EditTaskModal';
 import axios from 'axios';
+import DeleteTaskModal from './DeleteTaskModal';
 
 /**
  * Component for each individual task card
@@ -78,6 +79,7 @@ class Task extends Component {
                     <Col>{decodeURIComponent(this.props.data.name)}</Col>
                     <Col sm="auto">
                       <EditTaskModal members={this.props.members} groupId={this.props.groupId}/>
+                      <DeleteTaskModal groupId={this.props.groupId} taskId={this.props.data.id}/>
                     </Col>
                   </Row>  
                 </Card.Title>
