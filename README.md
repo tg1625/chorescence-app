@@ -31,8 +31,10 @@ Fully detailed system requirements and use cases can be found in [SRS.pdf](docum
 
 ## NPM Targets
 Since this project is built using Node, we will be using npm instead of make
-- npm start: compile and run the project
+- npm start: compile and run the project using the heroku server
     - the equivalent of make prod
+- npm run local: compile and run the project using the local server
+    - assumes server is running on port 3000
 - npm test: compile and run tests
     - the equivalent of make tests
 - npm test -- --coverage: compile and run tests with coverage

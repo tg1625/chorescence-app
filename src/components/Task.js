@@ -13,17 +13,14 @@ import axios from 'axios';
 class Task extends Component {
   static propTypes = {
     members: PropTypes.array,
-    groupId: PropTypes.number,
+    groupId: PropTypes.string,
     data: PropTypes.shape({
       name: PropTypes.string,
-      id: PropTypes.number,
+      id: PropTypes.string,
       dueDate: PropTypes.string,
       description: PropTypes.string,
       comments: PropTypes.array,
-      assigned: PropTypes.shape({
-        name: PropTypes.string,
-        id: PropTypes.number
-      })
+      assigned: PropTypes.string
     })
   };
 
@@ -56,7 +53,7 @@ class Task extends Component {
   markComplete(setting){
     // console.log("Marked!");
     // axios.patch(`http://localhost:3000/tasks/?groupid=${this.props.groupId}&taskid=${this.props.data.id}`, {completed:setting}, {
-    axios.patch(`https://chorescence-api.herokuapp.com/tasks/?groupid=${this.props.groupId}&taskid=${this.props.data.id}`, {completed:true}, {
+    axios.patch(`${process.env.REACT_APP_API_URL}/tasks/?groupid=${this.props.groupId}&taskid=${this.props.data.id}`, {completed:true}, {
         headers: {
           // Overwrite Axios's automatically set Content-Type
           'Content-Type': 'application/json'
@@ -72,7 +69,7 @@ class Task extends Component {
   }
 
   render() {
-    console.log("Task Data", this.props.data);
+    // console.log("Task Data", this.props.data);
     return (
         <Card>
             <Card.Body>
@@ -94,8 +91,10 @@ class Task extends Component {
             </Card.Body>
             <CommentSection comments={this.props.data.comments} groupId={this.props.groupId} taskId={this.props.data.id} members={this.props.members}/>
             <Card.Footer className="text-muted">
-              Assigned to: <strong>{this.state.assigneeName}</strong>
-              <span className="float-right">Due by:<strong> {this.props.data.dueDate}</strong></span> 
+              <Row>
+                <Col>Assigned to: <strong>{this.state.assigneeName}</strong></Col>
+                <Col>Due by:<strong> {this.props.data.dueDate}</strong></Col>
+              </Row> 
             </Card.Footer>
         </Card>
     )

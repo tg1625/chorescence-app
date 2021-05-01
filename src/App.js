@@ -27,12 +27,41 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
+      userInfo: {},
       loggedIn: false
     }
   }
 
   toggleLogin(){
-    this.setState({loggedIn: !this.state.loggedIn})
+    if(this.state.loggedIn){
+      localStorage.setItem('user', JSON.stringify({}));
+      this.setState({userInfo: {}})
+    }
+    else{
+      const data = {
+        username: "tatyg",
+        lname: "Graesser",
+        id: "40e6215d-b5c6-4896-987c-f30f3678f608",
+        groups: [
+          "40e6215d-b5c6-4886-987c-f30f3678f608", 
+          "fa0cc8f7-d57d-4bce-a3f3-106612f64e20"
+        ],
+        fname: "Tatyana",
+        email: "tatygraesser@gmail.com"
+      };
+      localStorage.setItem('user', JSON.stringify(data));
+      console.log("User info", data);
+      this.setState({userInfo: data});
+    }
+    this.setState({loggedIn: !this.state.loggedIn});
+  }
+
+  componentDidMount(){
+    const user = localStorage.getItem("user");
+    if(user){
+      this.setState({userInfo: user});
+      this.setState({loggedIn: true});
+    }
   }
 
   render() {

@@ -8,7 +8,7 @@ class Comment extends Component{
     static propTypes = {
         members: PropTypes.array,
         comment: PropTypes.shape({
-            commentor: PropTypes.number,
+            commentor: PropTypes.string,
             comment: PropTypes.string
         })
     }
@@ -29,7 +29,7 @@ class Comment extends Component{
 
     render(){
         return(
-            <div ><strong>{this.state.name}: </strong> {this.props.comment.comment}</div>
+            <div ><strong>{this.state.name}: </strong> {decodeURIComponent(this.props.comment.comment)}</div>
         )
     }
 }

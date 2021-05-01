@@ -13,7 +13,7 @@ import {faComment} from '@fortawesome/free-regular-svg-icons'
  */
 class CommentSection extends Component{
     static propTypes = {
-        taskId: PropTypes.number,
+        taskId: PropTypes.string,
         members: PropTypes.array,
         groupId: PropTypes.string,
         comments: PropTypes.array

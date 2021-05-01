@@ -8,8 +8,8 @@ import {Form, Button} from 'react-bootstrap';
  */
 class CommentForm extends Component{
     static propTypes = {
-        taskId: PropTypes.number,
-        groupId: PropTypes.number
+        taskId: PropTypes.string,
+        groupId: PropTypes.string
     }
     
     constructor(props) {
@@ -24,12 +24,21 @@ class CommentForm extends Component{
      */
     handleSubmit(event){
         event.preventDefault();
-        console.log(event.target.comment.value);
-
+        const data = {
+            taskid: this.props.taskId,
+            commentor: JSON.parse(localStorage.getItem("user")).id,
+            comment: encodeURIComponent(event.target.comment.value)
+        };
         //API Calls 
-        axios.patch(`https://chorescence-api.herokuapp.com/tasks/?groupid=${this.props.groupId}&taskid=${this.props.taskId}`). 
+        axios.patch(`${process.env.REACT_APP_API_URL}/tasks/?groupid=${this.props.groupId}&taskid=${this.props.taskId}`, data, {
+            headers: {
+              // Overwrite Axios's automatically set Content-Type
+              'Content-Type': 'application/json'
+            }
+          }).
         then((response) => {
-            console.log(response);
+            console.log("Reponse for task making", response);
+            window.location.reload(false);
         }).
         catch((error) => {
             console.log(error);

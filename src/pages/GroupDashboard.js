@@ -16,6 +16,7 @@ class GroupDashboard extends Component {
     super(props);
     console.log("Props", props.match);
     this.state = {
+      userInfo: JSON.parse(localStorage.getItem("user")),
       tasks: [],
       name: "",
       members: [],
@@ -24,7 +25,7 @@ class GroupDashboard extends Component {
   }
 
   componentDidMount(){
-    // console.log("User groups", this.props.location.state.userGroups);
+    console.log("User groups", this.props.location.state.userGroups);
     this.setState({id: this.props.match.params.groupId});
     this.loadData(this.props.match.params.groupId);
     this.loadGroupData(this.props.match.params.groupId);
@@ -32,7 +33,7 @@ class GroupDashboard extends Component {
 
   loadData(groupId){
     //getting the tasks for that group ID
-    axios.get(`https://chorescence-api.herokuapp.com/tasks/?groupid=${groupId}`).
+    axios.get(`${process.env.REACT_APP_API_URL}/tasks/?groupid=${groupId}`).
     then((response) => {
         console.log("Tasks Data", response);
         this.setState({tasks: response.data});
@@ -46,7 +47,7 @@ class GroupDashboard extends Component {
   async loadGroupData(groupid){
     let memberData = [];
     //getting group data 
-    await axios.get(`https://chorescence-api.herokuapp.com/group/?id=${groupid}`). 
+    await axios.get(`${process.env.REACT_APP_API_URL}/group/?id=${groupid}`). 
     then((response) => {
         console.log("Group data", response);
         this.setState({name: response.data.name});
@@ -59,7 +60,7 @@ class GroupDashboard extends Component {
     //get data for each user
     for(let i = 0; i < memberData.length; i++){
       // console.log(`We searching! https://chorescence-api.herokuapp.com/user/?id=${groupIds[i]}`);
-      await axios.get(`https://chorescence-api.herokuapp.com/user/?id=${memberData[i].id}`). 
+      await axios.get(`${process.env.REACT_APP_API_URL}/user/?id=${memberData[i].id}`). 
       then((response) => {
           console.log("User data", response);
           memberData[i].name = response.data.fname;
@@ -75,6 +76,9 @@ class GroupDashboard extends Component {
   render() {
     return (
       <Container>
+        <Row>
+          <Link to={`/`}>{"<"} Back to Groups</Link>
+        </Row>
         <Row style={{justifyContent: "space-between"}}>
           <Col>
             <h1>{this.state.name}</h1>
@@ -88,15 +92,14 @@ class GroupDashboard extends Component {
               },
               pathname: `/group/${this.state.id}/edit`
             }}><Button>Edit Group</Button> </Link>
-            <Dropdown as="span">
+            {/* <Dropdown as="span">
               <Dropdown.Toggle id="dropdown-basic">
                 Switch Group
               </Dropdown.Toggle>
-
               <Dropdown.Menu>
                 <Dropdown.Item href="/group/1">Group 1</Dropdown.Item>
                 <Dropdown.Item href="/group/4">Group 4</Dropdown.Item>
-                {/* {this.props.location.state.userGroups && this.props.location.state.userGroups.map((l, i) => 
+                {this.props.location.state.userGroups && this.props.location.state.userGroups.map((l, i) => 
                   <Dropdown.Item href="#/action-1" key={i}>
                   <Link to={{
                     state: {
@@ -106,9 +109,9 @@ class GroupDashboard extends Component {
                     pathname: `/group/${l.id}`
                   }}>{l.name}</Link>
                   </Dropdown.Item>)
-                } */}
+                }
               </Dropdown.Menu>
-          </Dropdown>
+          </Dropdown> */}
           </Col>
         </Row>
         <Row>

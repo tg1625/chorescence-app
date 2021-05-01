@@ -8,7 +8,7 @@ class CreateGroup extends Component {
     console.log(event.target.groupName.value);
     //replaces spaces/characters with the correct code 
     const groupName = encodeURIComponent(event.target.groupName.value.trim());
-    axios.post(`https://chorescence-api.herokuapp.com/group/create/?userid=${groupName}`). 
+    axios.post(`${process.env.REACT_APP_API_URL}/group/create/?userid=${groupName}`). 
       then((response) => {
           console.log(response);
       }).

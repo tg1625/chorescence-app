@@ -7,6 +7,7 @@ class Dashboard extends Component {
     constructor(props){
         super(props);
         this.state = {
+            userInfo: JSON.parse(localStorage.getItem("user")),
             groups: []
         }
     }
@@ -16,12 +17,12 @@ class Dashboard extends Component {
     }
 
     setGroups(){
-        axios.get(`https://chorescence-api.herokuapp.com/user/?id=40e6215d-b5c6-4896-987c-f30f3678f608`). 
+        axios.get(`${process.env.REACT_APP_API_URL}/user/?id=${this.state.userInfo.id}`). 
         then((response) => {
             let out = [];
-            // console.log(response);
+            console.log("Getting groups", response);
             for(let i = 0; i < response.data.groups.length; i++){
-                axios.get(`https://chorescence-api.herokuapp.com/group/?id=${response.data.groups[i]}`).
+                axios.get(`${process.env.REACT_APP_API_URL}/group/?id=${response.data.groups[i]}`).
                 then((res) => {
                     // console.log("Group info:", res);
                     out.push({name: res.data.name, id: res.data.id})

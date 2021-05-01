@@ -23,14 +23,14 @@ class TaskForm extends Component{
       const data = {
         name : event.target.name.value,
         groupid: this.props.groupId,
-        dueDate: new Date(event.target.date.value + "T03:24:00").toLocaleDateString(),
+        dueDate: new Date(`${event.target.date.value}T03:24:00`).toLocaleDateString(),
         description: encodeURIComponent(event.target.description.value),
         creationDate: new Date().toLocaleDateString(),
         assigned: event.target.assigned.value
       };
       console.log("Sending", data);
       // axios.post(`https://chorescence-api.herokuapp.com/tasks/?groupid=${this.props.groupId}data=${data}`).
-      axios.post(`https://chorescence-api.herokuapp.com/tasks/?groupid=${this.props.groupId}`, data, {
+      axios.post(`${process.env.REACT_APP_API_URL}/tasks/?groupid=${this.props.groupId}`, data, {
         headers: {
           // Overwrite Axios's automatically set Content-Type
           'Content-Type': 'application/json'

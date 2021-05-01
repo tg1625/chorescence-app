@@ -23,7 +23,7 @@ class EditGroup extends Component{
         return(
             <Container>
                 <Row>
-                <Link to={"/group/" + this.props.match.params.groupId}>{"<"} Back to Dashboard</Link>
+                <Link to={`/group/${this.props.match.params.groupId}`}>{"<"} Back to Dashboard</Link>
                 </Row>
                 <Row>
                     <h1>Edit Group</h1>
