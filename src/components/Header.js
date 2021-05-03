@@ -13,7 +13,6 @@ class Header extends Component {
 
   constructor(props){
     super(props);
-    console.log("Re render");
     this.state = {
       links: [{name: ""}]
     };
@@ -22,7 +21,7 @@ class Header extends Component {
       this.state.links = [
         {name: "Home", a: "/"},
         {name: "Profile", a: "/profile"},
-        {name: "Sign Out", a: "#"}
+        {name: "Sign Out", a: "/logout"}
       ];  
     }
     else{
@@ -40,7 +39,7 @@ class Header extends Component {
       this.setState({links: [
         {name: "Home", a: "/"},
         {name: "Profile", a: "/profile"},
-        {name: "Sign Out", a: "#"}
+        {name: "Sign Out", a: "/logout"}
       ]});  
     }
     else if (!this.props.loggedIn && !prevProps.loggedIn){

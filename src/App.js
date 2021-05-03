@@ -6,7 +6,7 @@ import {
   BrowserRouter as Router,
   Switch
 } from "react-router-dom";
-import PropTypes from 'prop-types';
+
 
 //Styles
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -23,12 +23,14 @@ import GroupDashboard from './pages/GroupDashboard';
 import JoinGroup from './pages/JoinGroup';
 import EditGroup from './pages/EditGroup';
 import UserProfile from './pages/UserProfile';
+import Logout from './pages/Logout';
 
 class App extends Component {
   constructor(props){
     super(props);
+    console.log("Props", this.props);
     const user = localStorage.getItem("user");
-    if(user){
+    if(user && Object.keys(JSON.parse(user)).length > 0){
       this.state = {
         userInfo: user,
         loggedIn: true
@@ -45,7 +47,7 @@ class App extends Component {
   toggleLogin(){
     if(this.state.loggedIn){
       localStorage.setItem('user', JSON.stringify({}));
-      this.setState({userInfo: {}})
+      this.setState({userInfo: {}, loggedIn: false});
     }
     else{
       const data = {
@@ -61,53 +63,44 @@ class App extends Component {
       };
       localStorage.setItem('user', JSON.stringify(data));
       console.log("User info", data);
-      this.setState({userInfo: data});
+      this.setState({userInfo: data, loggedIn: true});
     }
-    this.setState({loggedIn: !this.state.loggedIn});
   }
 
   componentDidMount(){
     const user = localStorage.getItem("user");
-    if(user){
-      this.setState({userInfo: user});
-      this.setState({loggedIn: true});
+    if(user && Object.keys(JSON.parse(user)).length > 0){
+      this.setState({userInfo: user, loggedIn: true});
     }
   }
 
   render() {
     console.log("Logged in:", this.state.loggedIn);
+    console.log("User: ", this.state.userInfo);
     return (
       <div className="siteWrapper">
         <Header loggedIn={this.state.loggedIn} />
         <button className="btn-primary" onClick={() => this.toggleLogin()}>
           Toggle Login
         </button>
-      
+
         {/* Routing for the pages */}
         <Router>
           <Switch>
             {/* Homepage route  */}
             <Route exact path="/">
               {
-              this.state.loggedIn ? <Redirect to="dashboard"/> : <Index/> 
+              this.state.loggedIn ? <Redirect to="/dashboard"/> : <Index/> 
               }
             </Route>
-            {/* Dashboard route */}
+            {/* Dashboard routes */}
             <Route exact path="/dashboard">
               {
               !this.state.loggedIn ? <Redirect to="/"/> : <Dashboard/> 
               }
             </Route>
-            <Route exact path="/group/:groupId">
-              {
-              !this.state.loggedIn ? <Redirect to="/"/> : <GroupDashboard/> 
-              }
-            </Route> 
-            <Route exact path="/group/:groupId/edit">
-              {
-              !this.state.loggedIn ? <Redirect to="/"/> : <EditGroup/> 
-              }
-            </Route>
+            <Route exact path="/group/:groupId" component={GroupDashboard}/>
+            <Route exact path="/group/:groupId/edit" component={EditGroup}/>
             {/* Group Creation route  */}
             <Route exact path="/creategroup">
               {
@@ -115,6 +108,7 @@ class App extends Component {
               }
               
             </Route>
+            {/* Join a Group Route */}
             <Route exact path="/joingroup">
               {
               !this.state.loggedIn ? <Redirect to="/signup"/> : <JoinGroup/> 
@@ -126,21 +120,20 @@ class App extends Component {
               !this.state.loggedIn ? <Redirect to="/"/> : <UserProfile/>
               }
             </Route>
-
             {/* Login route  */}
             <Route exact path="/login">
               {
-              this.state.loggedIn ? <Redirect to="dashboard"/> : <Login/> 
+              this.state.loggedIn ? <Redirect to="/dashboard"/> : <Login/> 
               }
             </Route>
+            {/* Logout route  */}
+            <Route exact path="/logout" component={Logout}/>
             {/* Sign Up Path  */}
-            <Route exact path="/signup">
-            {
-              this.state.loggedIn ? <Redirect to="dashboard"/> : <SignUp/> 
-              }
-            </Route>
+            <Route exact path="/signup" component={SignUp}/>
           </Switch>
         </Router>
+      
+        
       </div>
     );
   }

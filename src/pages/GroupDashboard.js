@@ -14,7 +14,6 @@ class GroupDashboard extends Component {
 
   constructor(props){
     super(props);
-    console.log("Props", props.match);
     this.state = {
       userInfo: JSON.parse(localStorage.getItem("user")),
       tasks: [],
@@ -25,7 +24,8 @@ class GroupDashboard extends Component {
   }
 
   componentDidMount(){
-    console.log("User groups", this.props.location.state.userGroups);
+    // console.log("User groups", this.props.location.state.userGroups);
+    console.log("Group props", this.props);
     this.setState({id: this.props.match.params.groupId});
     this.loadData(this.props.match.params.groupId);
     this.loadGroupData(this.props.match.params.groupId);

@@ -1,11 +1,18 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {Container, ListGroup} from 'react-bootstrap';
-import {Link, withRouter} from 'react-router-dom';
+import {
+    Redirect,
+    Route,
+    BrowserRouter as Router,
+    Switch,
+    Link
+  } from "react-router-dom";
 
 class Dashboard extends Component {
     constructor(props){
         super(props);
+        console.log("Dash props", props);
         this.state = {
             userInfo: JSON.parse(localStorage.getItem("user")),
             groups: []
@@ -42,6 +49,8 @@ class Dashboard extends Component {
     render() {
         console.log("Rendering groups:", this.state.groups);
         return (
+        <>
+        {this.state.userInfo && Object.keys(this.state.userInfo).length > 0 ? null : <Redirect to="/" /> }
         <Container>
             <h1>Groups</h1>
             <ListGroup>
@@ -51,13 +60,14 @@ class Dashboard extends Component {
                             state: {
                                 userGroups: this.state.groups
                             },
-                        pathname: `/group/${g.id}`
+                            pathname: `/group/${g.id}`
                         }}>{g.name}</Link>
                     </ListGroup.Item>)}
                 <ListGroup.Item><a href="/joingroup">Join a Group</a></ListGroup.Item>
                 <ListGroup.Item><a href="/creategroup">Create a Group</a></ListGroup.Item>
             </ListGroup>
         </Container>
+        </>
         );
     }
 }
