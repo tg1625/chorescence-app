@@ -28,11 +28,11 @@ import Logout from './pages/Logout';
 class App extends Component {
   constructor(props){
     super(props);
-    console.log("Props", this.props);
+    this.logoutFunction = this.logoutFunction.bind(this)
     const user = localStorage.getItem("user");
     if(user && Object.keys(JSON.parse(user)).length > 0){
       this.state = {
-        userInfo: user,
+        userInfo: JSON.parse(user),
         loggedIn: true
       }
     }
@@ -42,6 +42,11 @@ class App extends Component {
         loggedIn: false
       }
     }
+  }
+
+  logoutFunction(){
+    localStorage.setItem('user', JSON.stringify({}));
+    this.setState({userInfo: {}, loggedIn: false});
   }
 
   toggleLogin(){
@@ -79,7 +84,7 @@ class App extends Component {
     console.log("User: ", this.state.userInfo);
     return (
       <div className="siteWrapper">
-        <Header loggedIn={this.state.loggedIn} />
+        <Header loggedIn={this.state.loggedIn} logoutFunction={this.logoutFunction}/>
         <button className="btn-primary" onClick={() => this.toggleLogin()}>
           Toggle Login
         </button>
@@ -102,12 +107,7 @@ class App extends Component {
             <Route exact path="/group/:groupId" component={GroupDashboard}/>
             <Route exact path="/group/:groupId/edit" component={EditGroup}/>
             {/* Group Creation route  */}
-            <Route exact path="/creategroup">
-              {
-              !this.state.loggedIn ? <Redirect to="/"/> : <CreateGroup/> 
-              }
-              
-            </Route>
+            <Route exact path="/creategroup" render={() => <CreateGroup userInfo={this.state.userInfo}/>}/>
             {/* Join a Group Route */}
             <Route exact path="/joingroup">
               {

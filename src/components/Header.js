@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
+import {Button, Modal, Navbar, Nav} from 'react-bootstrap';
+// import Navbar from 'react-bootstrap/Navbar';
+// import Nav from 'react-bootstrap/Nav';
 import PropTypes from 'prop-types';
 
 /**
@@ -13,42 +14,6 @@ class Header extends Component {
 
   constructor(props){
     super(props);
-    this.state = {
-      links: [{name: ""}]
-    };
-    //Set up links
-    if(this.props.loggedIn){
-      this.state.links = [
-        {name: "Home", a: "/"},
-        {name: "Profile", a: "/profile"},
-        {name: "Sign Out", a: "/logout"}
-      ];  
-    }
-    else{
-      this.state.links = [
-        {name: "Home", a:"/"},
-        {name: "Login", a:"/login"},
-        {name: "Sign Up", a:"/signup"}
-      ]; 
-    }
-  }
-
-  componentDidUpdate(prevProps){
-    //Set up links
-    if(this.props.loggedIn && !prevProps.loggedIn){
-      this.setState({links: [
-        {name: "Home", a: "/"},
-        {name: "Profile", a: "/profile"},
-        {name: "Sign Out", a: "/logout"}
-      ]});  
-    }
-    else if (!this.props.loggedIn && !prevProps.loggedIn){
-      this.setState({links: [
-        {name: "Home", a:"/"},
-        {name: "Login", a:"/login"},
-        {name: "Sign Up", a:"/signup"}
-      ]});  
-    }
   }
 
   render() {
@@ -61,7 +26,14 @@ class Header extends Component {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ml-auto">
-              {this.state.links && this.state.links.map((l, i) => <Nav.Link href={l.a} key={i}>{l.name}</Nav.Link>)}
+            <Nav.Link href="/">Home</Nav.Link>
+              {/* Not Logged in */}
+              {!this.props.loggedIn && <Nav.Link href="/login">Login</Nav.Link>}
+              {!this.props.loggedIn && <Nav.Link href="/signup">Sign Up</Nav.Link>}
+
+              {/* Logged In */}
+              {this.props.loggedIn && <Nav.Link href="/profile">Profile</Nav.Link>}
+              {this.props.loggedIn && <Nav.Link as={Button} variant="link" onClick={this.props.logoutFunction}>Logout</Nav.Link>}
             </Nav>
           </Navbar.Collapse>
         </Navbar>
