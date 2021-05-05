@@ -27,6 +27,7 @@ class LoginForm extends Component {
         if(response !== {}){
           localStorage.setItem('user', JSON.stringify(response.data));
           this.setState({loggedIn : true});
+          window.location.href = "/dashboard";
         }
         else{
           this.setState({showError: true});

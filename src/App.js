@@ -85,9 +85,9 @@ class App extends Component {
     return (
       <div className="siteWrapper">
         <Header loggedIn={this.state.loggedIn} logoutFunction={this.logoutFunction}/>
-        <button className="btn-primary" onClick={() => this.toggleLogin()}>
+        {/* <button className="btn-primary" onClick={() => this.toggleLogin()}>
           Toggle Login
-        </button>
+        </button> */}
 
         {/* Routing for the pages */}
         <Router>
@@ -104,16 +104,12 @@ class App extends Component {
               !this.state.loggedIn ? <Redirect to="/"/> : <Dashboard/> 
               }
             </Route>
-            <Route exact path="/group/:groupId" component={GroupDashboard}/>
+            <Route exact path="/group/:groupId" component={GroupDashboard}/> 
             <Route exact path="/group/:groupId/edit" component={EditGroup}/>
             {/* Group Creation route  */}
             <Route exact path="/creategroup" render={() => <CreateGroup userInfo={this.state.userInfo}/>}/>
             {/* Join a Group Route */}
-            <Route exact path="/joingroup">
-              {
-              !this.state.loggedIn ? <Redirect to="/signup"/> : <JoinGroup/> 
-              }
-            </Route>
+            <Route exact path="/joingroup" render={() => <JoinGroup userInfo={this.state.userInfo}/>}/>
             {/* User Profile Route */}
             <Route exact path="/profile">
               {

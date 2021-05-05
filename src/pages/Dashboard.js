@@ -24,22 +24,10 @@ class Dashboard extends Component {
     }
 
     setGroups(){
-        axios.get(`${process.env.REACT_APP_API_URL}/user/?id=${this.state.userInfo.id}`). 
+        axios.get(`${process.env.REACT_APP_API_URL}/user/groups/?id=${this.state.userInfo.id}`). 
         then((response) => {
-            let out = [];
-            console.log("Getting groups", response);
-            for(let i = 0; i < response.data.groups.length; i++){
-                axios.get(`${process.env.REACT_APP_API_URL}/group/?id=${response.data.groups[i]}`).
-                then((res) => {
-                    // console.log("Group info:", res);
-                    out.push({name: res.data.name, id: res.data.id})
-                    this.setState({groups: out});
-                }).
-                catch((error) => {
-                    console.log(error);
-                })
-            }
-            // console.log("Full info", out);
+            console.log("Getting groups", response.data);
+            this.setState({groups: response.data});
         }).
         catch((error) => {
             console.log(error);

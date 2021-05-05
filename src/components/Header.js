@@ -22,7 +22,7 @@ class Header extends Component {
     return (
       <header>
         <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
-          <Navbar.Brand href="/">Chorescence</Navbar.Brand>
+          <Navbar.Brand href="/"><strong>Chorescence</strong></Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ml-auto">

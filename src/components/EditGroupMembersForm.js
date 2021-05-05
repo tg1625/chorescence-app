@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {Container, Row, Col, Form, Table, Button} from 'react-bootstrap';
+import GroupInviteModal from './GroupInviteModal';
 
 /**
  * Form to edit members of a group
@@ -25,6 +26,7 @@ class EditGroupMembersForm extends Component{
         return(
             <Form onSubmit={this.handleSubmit}>
             <h3>Group Members</h3>
+            <Row><GroupInviteModal groupId={this.props.groupId}/></Row>
                     <Row>
                         <Col sm="4"><h5>Name</h5></Col>
                         <Col sm="4"><h5>Role</h5></Col>

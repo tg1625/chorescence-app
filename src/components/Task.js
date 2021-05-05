@@ -54,7 +54,7 @@ class Task extends Component {
   markComplete(setting){
     // console.log("Marked!");
     // axios.patch(`http://localhost:3000/tasks/?groupid=${this.props.groupId}&taskid=${this.props.data.id}`, {completed:setting}, {
-    axios.patch(`${process.env.REACT_APP_API_URL}/tasks/?groupid=${this.props.groupId}&taskid=${this.props.data.id}`, {completed:true}, {
+    axios.patch(`${process.env.REACT_APP_API_URL}/tasks/?groupid=${this.props.groupId}&taskid=${this.props.data.id}`, {completed:setting}, {
         headers: {
           // Overwrite Axios's automatically set Content-Type
           'Content-Type': 'application/json'
@@ -78,7 +78,7 @@ class Task extends Component {
                   <Row>
                     <Col>{decodeURIComponent(this.props.data.name)}</Col>
                     <Col sm="auto">
-                      <EditTaskModal members={this.props.members} groupId={this.props.groupId}/>
+                      {/* <EditTaskModal members={this.props.members} groupId={this.props.groupId}/> */}
                       <DeleteTaskModal groupId={this.props.groupId} taskId={this.props.data.id}/>
                     </Col>
                   </Row>  
@@ -88,7 +88,7 @@ class Task extends Component {
                 </Card.Text>
                 {this.props.data.completed 
                 ? <Card.Link as={Button} variant="link" onClick={this.markComplete.bind(this, false)} href="#">Mark Incomplete</Card.Link>
-                : <Card.Link as={Button} variant="link" onClick={this.markComplete.bind(this, true)} href="#">Mark Done</Card.Link>
+                : <Card.Link as={Button} variant="link" onClick={this.markComplete.bind(this, true)} href="#">Mark Complete</Card.Link>
                 }
             </Card.Body>
             <CommentSection comments={this.props.data.comments} groupId={this.props.groupId} taskId={this.props.data.id} members={this.props.members}/>

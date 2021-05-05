@@ -24,7 +24,7 @@ class CreateGroup extends Component {
     }).
     then((response) => {
         console.log(response);
-        window.location.reload(false);
+        window.location.href = "/";
     }).
     catch((error) => {
         console.log(error);

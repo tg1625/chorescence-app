@@ -15,7 +15,8 @@ class EditGroup extends Component{
     }
 
     componentDidMount(){
-        console.log("This props location", this.props.location)
+        console.log("This props location", this.props.location);
+        console.log("props mathch", this.props.match.params.groupId);
         this.setState({data: this.props.location.state.members});
     }
 
@@ -32,7 +33,7 @@ class EditGroup extends Component{
                     <Col><EditGroupNameForm members={this.state.data}/></Col>
                 </Row>
                 <Row>
-                    <Col><EditGroupMembersForm members={this.state.data}/></Col>
+                    <Col><EditGroupMembersForm groupId={this.props.match.params.groupId} members={this.state.data}/></Col>
                 </Row>
             </Container> 
         );
