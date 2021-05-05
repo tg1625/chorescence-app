@@ -1,8 +1,14 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {Container, Form, Button} from 'react-bootstrap';
+import {Link} from 'react-router-dom';
+import {Container, Form, Button, Row, Col} from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
 class CreateGroup extends Component {
+  static propTypes = {
+    userInfo: PropTypes.object
+  };
+
   constructor(props){
     super(props);
     console.log("Props for create are", props);
@@ -36,16 +42,27 @@ class CreateGroup extends Component {
   render() {
     return (
       <Container>
-        <h1>Create a Group</h1>
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Group controlId="groupName">
-            <Form.Label>What's your group's name?</Form.Label>
-            <Form.Control size="lg" type="text" placeholder="Group Name"></Form.Control>
-          </Form.Group>
-          <Button type="submit" block>
-            Submit
-          </Button>
-        </Form>
+        <Row>
+          <Link to={`/`}>{"<"} Back to Groups</Link>
+        </Row>
+        <Row>
+          <Col>
+          <h1>Create a Group</h1>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Form onSubmit={this.handleSubmit}>
+              <Form.Group controlId="groupName">
+                <Form.Label>What's your group's name?</Form.Label>
+                <Form.Control size="lg" type="text" placeholder="Group Name"></Form.Control>
+              </Form.Group>
+              <Button type="submit" block>
+                Submit
+              </Button>
+            </Form>
+          </Col>
+        </Row>
       </Container>
     );
   }

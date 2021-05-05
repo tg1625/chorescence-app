@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Button, Jumbotron, Modal} from 'react-bootstrap';
-import {Link, withRouter} from 'react-router-dom';
-import axios from 'axios';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faTrashAlt} from '@fortawesome/free-regular-svg-icons'
+import {Link} from 'react-router-dom';
 
 /**
  * Button/Modal containing the invite message to add a user to the group
@@ -12,9 +9,9 @@ import {faTrashAlt} from '@fortawesome/free-regular-svg-icons'
  */
 class GroupInviteModal extends Component{
     static propTypes = {
-      taskId: PropTypes.string,
+      members:PropTypes.array,
       groupId: PropTypes.string
-    };
+    }
 
     constructor(props){
         super(props);

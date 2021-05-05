@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import axios from 'axios';
-import {Container, Row, Col, Form, Table, Button} from 'react-bootstrap';
+import {Col, Form, Button} from 'react-bootstrap';
 
 /**
  * Form to edit the groups name

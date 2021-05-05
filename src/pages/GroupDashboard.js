@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import axios from "axios";
-import {Link, withRouter} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Task from '../components/Task';
 import TaskAdderModal from '../components/TaskAdderModal';
-import {Container, CardColumns, Button, Row, Col, Accordion, Card, Dropdown} from 'react-bootstrap';
+import {Container, CardColumns, Button, Row, Col, Accordion, Card} from 'react-bootstrap';
 // import { CardDeck } from 'react-bootstrap';
 
 class GroupDashboard extends Component {
@@ -92,26 +92,6 @@ class GroupDashboard extends Component {
               },
               pathname: `/group/${this.state.id}/edit`
             }}><Button>Edit Group</Button> </Link>
-            {/* <Dropdown as="span">
-              <Dropdown.Toggle id="dropdown-basic">
-                Switch Group
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <Dropdown.Item href="/group/1">Group 1</Dropdown.Item>
-                <Dropdown.Item href="/group/4">Group 4</Dropdown.Item>
-                {this.props.location.state.userGroups && this.props.location.state.userGroups.map((l, i) => 
-                  <Dropdown.Item href="#/action-1" key={i}>
-                  <Link to={{
-                    state: {
-                      name: this.state.name,
-                      members: this.state.members
-                    },
-                    pathname: `/group/${l.id}`
-                  }}>{l.name}</Link>
-                  </Dropdown.Item>)
-                }
-              </Dropdown.Menu>
-          </Dropdown> */}
           </Col>
         </Row>
         <Row>

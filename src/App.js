@@ -23,7 +23,7 @@ import GroupDashboard from './pages/GroupDashboard';
 import JoinGroup from './pages/JoinGroup';
 import EditGroup from './pages/EditGroup';
 import UserProfile from './pages/UserProfile';
-import Logout from './pages/Logout';
+
 
 class App extends Component {
   constructor(props){
@@ -122,8 +122,6 @@ class App extends Component {
               this.state.loggedIn ? <Redirect to="/dashboard"/> : <Login/> 
               }
             </Route>
-            {/* Logout route  */}
-            <Route exact path="/logout" component={Logout}/>
             {/* Sign Up Path  */}
             <Route exact path="/signup" component={SignUp}/>
           </Switch>

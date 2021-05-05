@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Accordion, Button, Card, Row, Col} from 'react-bootstrap';
+import {Button, Card, Row, Col} from 'react-bootstrap';
 import CommentSection from '../components/CommentSection';
-import EditTaskModal from '../components/EditTaskModal';
 import axios from 'axios';
 import DeleteTaskModal from './DeleteTaskModal';
 
@@ -20,6 +19,7 @@ class Task extends Component {
       id: PropTypes.string,
       dueDate: PropTypes.string,
       description: PropTypes.string,
+      completed: PropTypes.bool,
       comments: PropTypes.array,
       assigned: PropTypes.string
     })
@@ -27,8 +27,6 @@ class Task extends Component {
 
   constructor(props){
     super(props);
-    // this.markComplete = this.markComplete.bind(this);
-    const mem = this.props.members.find((m) => m.id == this.props.data.assigned.id);
     this.state = {
       completed: this.props.data.completed,
       assigneeName: ""
@@ -38,7 +36,7 @@ class Task extends Component {
   /**
    * Loads the correct name for the task assignee
    */
-  componentDidUpdate(prevProps, prevState){
+  componentDidUpdate(prevProps){
     if(prevProps.members != this.props.members){
       //Load name of assignee
       const mem = this.props.members.find((m) => m.id == this.props.data.assigned);

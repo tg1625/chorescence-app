@@ -6,10 +6,15 @@ import TaskForm from './TaskForm.js';
 /**
  * Button/Modal for the form to add a task
  * 
- * Actual form is in the TaskForm componern
+ * Actual form is in the TaskForm component
  * 
  */
 class TaskAdderModal extends Component{
+    static propTypes = {
+      members:PropTypes.array,
+      groupId: PropTypes.string
+    }
+
     constructor(props){
         super(props);
         this.handleShow = this.handleShow.bind(this)

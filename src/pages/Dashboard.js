@@ -3,9 +3,6 @@ import axios from 'axios';
 import {Container, ListGroup} from 'react-bootstrap';
 import {
     Redirect,
-    Route,
-    BrowserRouter as Router,
-    Switch,
     Link
   } from "react-router-dom";
 

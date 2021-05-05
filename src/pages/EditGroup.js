@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
-import axios from 'axios';
-import {Container, Row, Col, Form, Table, Button} from 'react-bootstrap';
-import {Link, withRouter} from 'react-router-dom';
+import {Container, Row, Col} from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 import EditGroupNameForm from '../components/EditGroupNameForm';
 import EditGroupMembersForm from '../components/EditGroupMembersForm';
-// import { Button } from 'bootstrap';
 
 class EditGroup extends Component{
     constructor(props){

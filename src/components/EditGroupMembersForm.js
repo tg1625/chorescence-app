@@ -1,12 +1,17 @@
 import React, {Component} from 'react';
-import axios from 'axios';
-import {Container, Row, Col, Form, Table, Button} from 'react-bootstrap';
+import {Row, Col, Form, Button} from 'react-bootstrap';
 import GroupInviteModal from './GroupInviteModal';
+import PropTypes from 'prop-types';
 
 /**
  * Form to edit members of a group
  */
 class EditGroupMembersForm extends Component{
+    static propTypes = {
+        members:PropTypes.array,
+        groupId: PropTypes.string
+      }
+      
     constructor(props){
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);

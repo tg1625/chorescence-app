@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Modal, Navbar, Nav} from 'react-bootstrap';
-// import Navbar from 'react-bootstrap/Navbar';
-// import Nav from 'react-bootstrap/Nav';
+import {Button, Navbar, Nav} from 'react-bootstrap';
 import PropTypes from 'prop-types';
 
 /**
@@ -9,6 +7,7 @@ import PropTypes from 'prop-types';
  */
 class Header extends Component {
   static propTypes = {
+    logoutFunction: PropTypes.func,
     loggedIn: PropTypes.bool
   };
 

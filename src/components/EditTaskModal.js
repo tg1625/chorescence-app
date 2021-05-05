@@ -11,6 +11,11 @@ import {faEdit} from '@fortawesome/free-regular-svg-icons'
  * Contains the TaskForm component
  */
 class EditTaskModal extends Component{
+    static propTypes = {
+      members: PropTypes.string,
+      groupId: PropTypes.string
+    }
+
     constructor(props){
         super(props);
         this.handleShow = this.handleShow.bind(this)

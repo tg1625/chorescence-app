@@ -20,7 +20,7 @@ class Comment extends Component{
         };
     }
     
-    componentDidUpdate(prevProps, prevState){
+    componentDidUpdate(prevProps){
         if(prevProps.members != this.props.members){
             const mem = this.props.members.find((m) => m.id == this.props.comment.commentor);
             mem ? this.setState({name: mem.name}) : this.setState({name: ""});

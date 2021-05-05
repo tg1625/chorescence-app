@@ -7,6 +7,12 @@ import axios from 'axios';
  * Form used to edit or create a new task
  */
 class TaskForm extends Component{
+    static propTypes = {
+      members:PropTypes.array,
+      groupId: PropTypes.string,
+      action: PropTypes.string
+    }
+
     constructor(props) {
         super(props)
         this.handleCreate = this.handleCreate.bind(this);
@@ -103,10 +109,6 @@ class TaskForm extends Component{
         </Form>
           );
     }
-}
-
-TaskForm.propTypes = {
-  action: PropTypes.string
 }
 
 export default TaskForm;

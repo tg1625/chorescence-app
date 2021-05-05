@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import SignUpForm from '../components/SignUpForm';
 import {Container, Row, Col, ListGroup} from 'react-bootstrap';
 
 class UserProfile extends Component {

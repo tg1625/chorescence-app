@@ -1,23 +1,10 @@
 import React, {Component} from 'react';
-import {Container, Button, Jumbotron, Carousel} from 'react-bootstrap';
+import {Container, Button, Jumbotron} from 'react-bootstrap';
 
 class Index extends Component {
   render() {
     return (
       <Container fluid style={{padding:0}}>
-        {/* <Carousel>
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src="https://i.pinimg.com/originals/e5/d5/5a/e5d55aae8e225730e9c30dc5514f5ebd.jpg"
-              alt="First slide"
-            />
-            <Carousel.Caption>
-              <h3>First slide label</h3>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-        </Carousel> */}
         <div className="splashImg">
           <div className="text">
               <h1>Chorescence</h1>

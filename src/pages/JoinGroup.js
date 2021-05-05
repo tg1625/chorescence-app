@@ -1,8 +1,14 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {Container, Form, Button} from 'react-bootstrap';
+import {Link} from 'react-router-dom';
+import {Container, Form, Button, Row, Col} from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
 class JoinGroup extends Component {
+  static propTypes = {
+    userInfo: PropTypes.object
+  };
+
   constructor(props) {
     super(props)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -30,16 +36,24 @@ class JoinGroup extends Component {
   render() {
     return (
       <Container>
-        <h1>Join a Group</h1>
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Group controlId="code">
-            <Form.Label>Enter a join code</Form.Label>
-            <Form.Control size="lg" type="text" placeholder="Join Code"></Form.Control>
-          </Form.Group>
-          <Button type="submit" block>
-            Submit
-          </Button>
-        </Form>
+        <Row>
+          <Link to={`/`}>{"<"} Back to Groups</Link>
+        </Row>
+        <Row><Col><h1>Join a Group</h1></Col></Row>
+        <Row>
+          <Col>
+            <Form onSubmit={this.handleSubmit}>
+              <Form.Group controlId="code">
+                <Form.Label>Enter a join code</Form.Label>
+                <Form.Control size="lg" type="text" placeholder="Join Code"></Form.Control>
+              </Form.Group>
+              <Button type="submit" block>
+                Submit
+              </Button>
+            </Form>
+          </Col>
+        </Row>
+        
       </Container>
     );
   }
