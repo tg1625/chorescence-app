@@ -32,7 +32,6 @@ Fully detailed system requirements and use cases can be found in [SRS.pdf](docum
 ## NPM Targets
 Since this project is built using Node, we will be using npm instead of make
 - npm start: compile and run the project using the heroku server
-    - the equivalent of make prod
 - npm run local: compile and run the project using the local server
     - assumes server is running on port 3000
 - npm test: compile and run tests
@@ -41,4 +40,5 @@ Since this project is built using Node, we will be using npm instead of make
 - npm install: install all the dependencies for the project
     - the equivalent of make dev_env
 - npm run docs: run React component documentation server
-
+- npm run prod -- "Message of the commit": runs tests, then pushes code to GitHub
+    - the equivalent of make prod
