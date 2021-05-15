@@ -31,13 +31,10 @@ class CommentForm extends Component{
         };
         //API Calls 
         axios.patch(`${process.env.REACT_APP_API_URL}/tasks/?groupid=${this.props.groupId}&taskid=${this.props.taskId}`, data, {
-            headers: {
-              // Overwrite Axios's automatically set Content-Type
-              'Content-Type': 'application/json'
-            }
+            headers: { 'Content-Type': 'application/json'}
           }).
         then((response) => {
-            console.log("Reponse for task making", response);
+            console.log("Reponse for comment making", response);
             window.location.reload(false);
         }).
         catch((error) => {
@@ -47,11 +44,11 @@ class CommentForm extends Component{
 
     render(){
         return(
-            <Form onSubmit={this.handleSubmit}>
+            <Form className="comment-form" onSubmit={this.handleSubmit}>
           <Form.Group controlId="comment">
             <Form.Control size="sm" type="text" placeholder="Add a Comment"></Form.Control>
           </Form.Group>
-          <Button type="submit" block>
+          <Button type="submit" id="submit" block>
             Submit
           </Button>
         </Form>

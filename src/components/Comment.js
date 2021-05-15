@@ -15,21 +15,30 @@ class Comment extends Component{
 
     constructor(props){
         super(props);
-        this.state = {
-            name: ""
-        };
+        const mem = this.props.members.find((m) => m.id == this.props.comment.commentor);
+        mem ? this.state = {name: mem.name} : this.state = {name: "Unknown"} ;
     }
     
     componentDidUpdate(prevProps){
         if(prevProps.members != this.props.members){
-            const mem = this.props.members.find((m) => m.id == this.props.comment.commentor);
-            mem ? this.setState({name: mem.name}) : this.setState({name: ""});
+            this.getName(this.props.members, this.props.comment);
         }  
+        
+    }
+
+    /**
+     * Uses members prop to select the correct name for the comment
+     * @param {*} event
+     * @public 
+    */
+    getName(members, comment){
+        const mem = members.find((m) => m.id == comment.commentor);
+            mem ? this.setState({name: mem.name}) : this.setState({name: "Unknown"});
     }
 
     render(){
         return(
-            <div ><strong>{this.state.name}: </strong> {decodeURIComponent(this.props.comment.comment)}</div>
+            <div className="comment"><strong>{this.state.name}: </strong> {decodeURIComponent(this.props.comment.comment)}</div>
         )
     }
 }
