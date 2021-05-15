@@ -28,7 +28,10 @@
     "eject": "react-scripts eject",
     "lint": "eslint ./src/**",
     "lint-fix": "eslint --fix ./src/** --ignore-pattern ./src/styles/**",
-    "docs": "npx styleguidist server"
+    "docs": "npx styleguidist server",
+    "prod": "npm run test && git add . && git commit -m",
+    "postprod": "git push --all"
+
   },
   "eslintConfig": {
     "extends": [
