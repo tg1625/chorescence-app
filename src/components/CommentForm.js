@@ -31,7 +31,7 @@ class CommentForm extends Component{
         };
         //API Calls 
         axios.patch(`${process.env.REACT_APP_API_URL}/tasks/?groupid=${this.props.groupId}&taskid=${this.props.taskId}`, data, {
-            headers: { 'Content-Type': 'application/json'}
+            headers: {'Content-Type': 'application/json'}
           }).
         then((response) => {
             console.log("Reponse for comment making", response);

@@ -16,7 +16,7 @@ class Comment extends Component{
     constructor(props){
         super(props);
         const mem = this.props.members.find((m) => m.id == this.props.comment.commentor);
-        mem ? this.state = {name: mem.name} : this.state = {name: "Unknown"} ;
+        mem ? this.state = {name: mem.name} : this.state = {name: "Unknown"};
     }
     
     componentDidUpdate(prevProps){
